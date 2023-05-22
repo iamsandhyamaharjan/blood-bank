@@ -44,6 +44,7 @@
     }
     .ml-auto {
       margin-left: auto;
+      margin-right:500px;
     }
     .modal {
       display: none;
@@ -70,8 +71,29 @@
       font-weight: bold;
       cursor: pointer;
     }
+    .dropdown {
+      position: relative;
+    }
+    .dropdown-content {
+      position: absolute;
+      background-color: #f9f9f9;
+      min-width: 120px;
+      box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+      z-index: 1;
+      display: none;
+    }
+    .dropdown:hover .dropdown-content {
+      display: block;
+    }
+    .dropdown-content a {
+      display: block;
+      padding: 10px;
+      color:black;
+    }
   </style>
    <script>
+          
+    // JavaScript to toggle modal visibility
     function openModal() {
       var modal = document.getElementById("modal");
       modal.style.display = "block";
@@ -85,6 +107,11 @@
       if (event.target == modal) {
         modal.style.display = "none";
       }
+    }
+     // JavaScript to toggle dropdown menu visibility
+     function toggleDropdown() {
+      var dropdownContent = document.getElementById("dropdown-content");
+      dropdownContent.style.display = (dropdownContent.style.display === "none") ? "block" : "none";
     }
   </script>
 </head>
@@ -101,7 +128,13 @@
     </div>
     <ul class="navbar-nav ml-auto">
       <li><a href="#" onclick="openModal()">Admin</a></li>
-      <li><a href="#">Login</a></li>
+      <li class="dropdown">
+      <a href="#" onclick="toggleDropdown()">User</a>
+      <div id="dropdown-content" class="dropdown-content">
+            <a href="#"  style="color: black;">Sign Up</a>
+            <a href="#"  style="color: black;" onclick="openModal()">Login</a>
+          </div>
+      </li>
     </ul>
   </div>
   <div id="modal" class="modal">
