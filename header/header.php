@@ -1,4 +1,7 @@
+ <?php
 
+include('../connect.php')
+?> 
 
 
 <!DOCTYPE html>
@@ -140,7 +143,7 @@
   <div id="modal" class="modal">
     <div class="modal-content">
       <span class="close" onclick="closeModal()">&times;</span>
-      <form>
+      <form action="" method="post">
         <!-- Your form fields here -->
         <label for="username">Username:</label>
         <input type="text" id="username" name="username" placeholder="Enter your username">
@@ -148,10 +151,32 @@
         <label for="password">Password:</label>
         <input type="password" id="password" name="password" placeholder="Enter your password">
         <br>
-        <input type="submit" value="Login">
+        <input type="submit" name="submit" value="Login">
       </form>
-    </div>
-  </div>
+      <?php
+if(isset($_POST['submit']))
+{
+  $username = $_POST['username'];
+  $password = $_POST['password'];
 
+  // Prepare the query using parameterized statements to avoid SQL injection
+  $q = $db->prepare("SELECT * FROM admin WHERE uname=:username AND pass=:password");
+  $q->bindParam(':username', $username);
+  $q->bindParam(':password', $password);
+  $q->execute();
+
+  // Fetch the result
+  $res = $q->fetchAll(PDO::FETCH_OBJ);
+
+  if ($res) {
+    header('Location: admin-home.php');
+    exit(); // Make sure to exit after redirecting
+  } else {
+    echo "<script>alert('Wrong user');</script>";
+  }
+}
+?>
+</div>
+</div>
 </body>
 </html>

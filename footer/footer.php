@@ -32,7 +32,7 @@
 <body>
 <?php
   // Include file2.php
-  include 'index.php';
+  include '../header/header.php';
   ?>
   <!-- Your page content here -->
 s,mdksbmdnmsvdnbsvdnbsdvnbsbdvsbndvsndvsndvs
