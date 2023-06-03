@@ -1,8 +1,11 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Responsive Footer</title>
-  <style>
+  <title>Responsive Footer</title><link rel="stylesheet" type="text/css" href="footer.css">
+  <script src="script.js"></script>
+  <link rel="stylesheet" type="text/css" href="../header/header.css">
+  <script src="../header/header.js"></script>
+  <!-- <style>
     /* CSS for the footer */
     body {
       margin: 0;
@@ -27,7 +30,7 @@
     }
     .footer-text {
       margin: 0;
-  </style>
+  </style> -->
 </head>
 <body>
 <?php

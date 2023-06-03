@@ -8,115 +8,9 @@ include('../connect.php')
 <html>
 <head>
   <title>Responsive Navbar</title>
-  <style>
-    /* CSS for the navbar */
-    body {
-      margin: 0;
-      padding: 0;
-    }
-    .navbar {
-      background-color: #cf3d3c;
-      color: white;
-      display: flex;
-      align-items: center;
-      padding: 10px;
-    }
-    .navbar-brand {
-      font-weight: bold;
-      text-decoration: none;
-      color: white;
-    }
-    .blood-logo {
-      width: 10%;
-      height: auto;
-      margin-right: 10px; /* Adjust the margin as needed */
-    }
-    .navbar-nav {
-      list-style: none;
-      margin: 0;
-      padding: 0;
-      display: flex;
-      align-items: center;
-    }
-    .navbar-nav li {
-      margin-right: 10px;
-    }
-    .navbar-nav li a {
-      text-decoration: none;
-      color: white;
-    }
-    .ml-auto {
-      margin-left: auto;
-      margin-right:500px;
-    }
-    .modal {
-      display: none;
-      position: fixed;
-      z-index: 1;
-      left: 0;
-      top: 0;
-      width: 100%;
-      height: 100%;
-      overflow: auto;
-      background-color: rgba(0, 0, 0, 0.5);
-    }
-    .modal-content {
-      background-color: #f9f9f9;
-      margin: 15% auto;
-      padding: 20px;
-      border: 1px solid #888;
-      width: 50%;
-    }
-    .close {
-      color: #aaa;
-      float: right;
-      font-size: 28px;
-      font-weight: bold;
-      cursor: pointer;
-    }
-    .dropdown {
-      position: relative;
-    }
-    .dropdown-content {
-      position: absolute;
-      background-color: #f9f9f9;
-      min-width: 120px;
-      box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-      z-index: 1;
-      display: none;
-    }
-    .dropdown:hover .dropdown-content {
-      display: block;
-    }
-    .dropdown-content a {
-      display: block;
-      padding: 10px;
-      color:black;
-    }
-  </style>
-   <script>
-          
-    // JavaScript to toggle modal visibility
-    function openModal() {
-      var modal = document.getElementById("modal");
-      modal.style.display = "block";
-    }
-    function closeModal() {
-      var modal = document.getElementById("modal");
-      modal.style.display = "none";
-    }
-    window.onclick = function(event) {
-      var modal = document.getElementById("modal");
-      if (event.target == modal) {
-        modal.style.display = "none";
-      }
-    }
-     // JavaScript to toggle dropdown menu visibility
-     function toggleDropdown() {
-      var dropdownContent = document.getElementById("dropdown-content");
-      dropdownContent.style.display = (dropdownContent.style.display === "none") ? "block" : "none";
-    }
-  </script>
+  <link rel="stylesheet" type="text/css" href="header.css">
+  <script src="header.js"></script>
+
 </head>
 <body>
 
@@ -134,7 +28,7 @@ include('../connect.php')
       <li class="dropdown">
       <a href="#" onclick="toggleDropdown()">User</a>
       <div id="dropdown-content" class="dropdown-content">
-            <a href="#"  style="color: black;">Sign Up</a>
+            <a href="#"  style="color: black;"onclick="openSignModal()">Sign Up</a>
             <a href="#"  style="color: black;" onclick="openModal()">Login</a>
           </div>
       </li>
@@ -169,7 +63,8 @@ if(isset($_POST['submit']))
   $res = $q->fetchAll(PDO::FETCH_OBJ);
 
   if ($res) {
-    header('Location: admin-home.php');
+    echo "<script>window.location.href = '../admin/admin-home.php';</script>";
+    // header('Location: ../admin/admin-home.php');
     exit(); // Make sure to exit after redirecting
   } else {
     echo "<script>alert('Wrong user');</script>";
@@ -178,5 +73,37 @@ if(isset($_POST['submit']))
 ?>
 </div>
 </div>
+<div id="smodal" class="smodal">
+    <div class="smodal-content">
+      <span class="close" onclick="closeModal()">&times;</span>
+    
+    <form action="#" method="post">
+      <label for="name">Name:</label>
+      <input type="text" id="name" name="name" placeholder="Enter your name">
+      <br>
+      <label for="address">Address:</label>
+      <input type="text" id="address" name="address" placeholder="Enter your address">
+      <br>
+      <label for="age">Age:</label>
+      <input type="number" id="age" name="age" placeholder="Enter your age">
+      <br>
+      <label for="contact">Contact:</label>
+      <input type="text" id="contact" name="contact" placeholder="Enter your contact number">
+      <br>
+      <label for="role">Role:</label>
+      <select id="role" name="role">
+        <option value="donor">Donor</option>
+        <option value="recipient">Recipient</option>
+      </select>
+      <br>
+      <input type="submit" name="signup" value="Sign Up">
+    </form>
+  
+
+    
+</div>
+</div>
+
+
 </body>
 </html>
