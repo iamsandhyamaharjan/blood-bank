@@ -1,0 +1,25 @@
+
+/* CSS for the footer */
+body {
+  margin: 0;
+  padding: 0;
+  position: relative;
+  min-height: 100vh;
+}
+.footer {
+  background-color: #cf3d3c;
+  color: white;
+  padding: 20px;
+  text-align: center;
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+}
+.footer-logo {
+  width: 100px;
+  height: auto;
+  margin-bottom: 10px;
+}
+.footer-text {
+  margin: 0;}

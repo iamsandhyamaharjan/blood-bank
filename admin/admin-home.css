@@ -3,7 +3,7 @@ body {
           padding: 0;
       }
       .header {
-          background-color: #FF0000; /* Red background color */
+          background-color: #cf3d3c; /* Red background color */
           color: #FFFFFF; /* White text color */
           padding: 20px;
           text-align: center;
@@ -48,7 +48,7 @@ body {
       }
       
       .sidebar a:hover {
-          color: #FF0000; /* Sidebar link color on hover */
+          color: #cf3d3c; /* Sidebar link color on hover */
       }
       
       .content {

@@ -15,7 +15,7 @@
     <div class="sidebar">
         <ul>
             <li><a href="#"><i class="fas fa-home"></i> Dashboard</a></li>
-            <li><a href="#"><i class="fas fa-users"></i> Donor Management</a></li>
+            <li><a href="../admin-donor-management/donor.php"><i class="fas fa-users"></i> Donor Management</a></li>
             <li><a href="#"><i class="fas fa-cubes"></i> Inventory Management</a></li>
             <li><a href="#"><i class="fas fa-list-alt"></i> Blood Requests</a></li>
             <li><a href="#"><i class="fas fa-chart-bar"></i> Reports</a></li>

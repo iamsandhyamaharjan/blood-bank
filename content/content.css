@@ -1,0 +1,27 @@
+.card {
+          width: 23%;
+          display: inline-block;
+          margin: 1%;
+          border: 1px solid #ccc;
+          border-radius: 5px;
+          padding: 10px;
+          box-sizing: border-box;
+      }
+      
+      .card img {
+          width: 100%;
+          height: auto;
+          border-radius: 5px;
+      }
+      
+      .card .donor-info {
+          margin-top: 10px;
+      }
+      
+      .search-container {
+          margin-bottom: 20px;
+      }
+      
+      .search-container input[type=text] {
+          padding: 5px;
+      }
