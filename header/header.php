@@ -1,109 +1,223 @@
- <?php
+<?php
+include('../connect.php');
 
-include('../connect.php')
-?> 
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    if (isset($_POST['submit'])) {
+        $username = $_POST['username'];
+        $password = $_POST['password'];
 
+        // Prepare the query using parameterized statements to avoid SQL injection
+        $q = $db->prepare("SELECT * FROM admin WHERE uname=:username AND pass=:password");
+        $q->bindParam(':username', $username);
+        $q->bindParam(':password', $password);
+        $q->execute();
+
+        // Fetch the result
+        $res = $q->fetchAll(PDO::FETCH_OBJ);
+
+        if ($res) {
+            echo "<script>window.location.href = '../admin/admin-home.php';</script>";
+            exit(); // Make sure to exit after redirecting
+        } else {
+            echo "<script>alert('Wrong user');</script>";
+        }
+    } elseif (isset($_POST['signup'])) {
+        // Get form data
+        $name = $_POST['name'];
+        $address = $_POST['address'];
+        $age = $_POST['age'];
+        $contact = $_POST['contact'];
+        $bloodgroup = $_POST['bloodgroup'];
+        $Password = $_POST['Password'];
+        $role = $_POST['role'];
+
+        // Check role and save data accordingly
+        if ($role === 'recipient') {
+            saveRecipientData($name, $address, $age, $contact, $bloodgroup, $Password);
+        } elseif ($role === 'donor') {
+            saveDonorData($name, $address, $age, $contact, $bloodgroup, $Password);
+        }
+    } elseif (isset($_POST['submit-login'])) {
+        $username = $_POST['username'];
+        $password = $_POST['password'];
+        $role = $_POST['role'];
+
+        try {
+            if ($role === 'recipient') {
+                $q = $db->prepare("SELECT * FROM recipient WHERE name=:username AND Password=:password");
+                $q->bindParam(':username', $username);
+                $q->bindParam(':password', $password);
+                $q->execute();
+
+                // Fetch the result
+                $res = $q->fetchAll(PDO::FETCH_OBJ);
+
+                if ($res) {
+                    echo "<script>window.location.href = '../recipient/recipient.php';</script>";
+                    exit(); // Make sure to exit after redirecting
+                } else {
+                    echo "<script>alert('Wrong user');</script>";
+                }
+            } elseif ($role === 'donor') {
+                $q = $db->prepare("SELECT * FROM donors WHERE name=:username AND Password=:password");
+                $q->bindParam(':username', $username);
+                $q->bindParam(':password', $password);
+                $q->execute();
+
+                // Fetch the result
+                $res = $q->fetchAll(PDO::FETCH_OBJ);
+
+                if ($res) {
+                    echo "<script>window.location.href = '../donor/donor.php';</script>";
+                    exit(); // Make sure to exit after redirecting
+                } else {
+                    echo "<script>alert('Wrong user');</script>";
+                }
+            }
+        } catch (PDOException $e) {
+            echo $e->getMessage();
+        }
+    }
+}
+
+function saveRecipientData($name, $address, $age, $contact, $bloodgroup, $Password)
+{
+    global $db;
+    try {
+        // Prepare the query using parameterized statements to avoid SQL injection
+        $q = $db->prepare("INSERT INTO recipient (name, address, age, contact, bloodgroup, Password) VALUES (:name, :address, :age, :contact, :bloodgroup, :Password)");
+        $q->bindParam(':name', $name);
+        $q->bindParam(':address', $address);
+        $q->bindParam(':age', $age);
+        $q->bindParam(':contact', $contact);
+        $q->bindParam(':bloodgroup', $bloodgroup);
+        $q->bindParam(':Password', $Password);
+        $q->execute();
+
+        echo "Recipient data saved successfully.";
+    } catch (PDOException $e) {
+        echo "Error: " . $e->getMessage();
+    }
+}
+
+function saveDonorData($name, $address, $age, $contact, $bloodgroup, $Password)
+{
+    global $db;
+    try {
+        // Prepare the query using parameterized statements to avoid SQL injection
+        $q = $db->prepare("INSERT INTO donors (name, address, age, contact, bloodgroup, Password) VALUES (:name, :address, :age, :contact, :bloodgroup, :Password)");
+        $q->bindParam(':name', $name);
+        $q->bindParam(':address', $address);
+        $q->bindParam(':age', $age);
+        $q->bindParam(':contact', $contact);
+        $q->bindParam(':bloodgroup', $bloodgroup);
+        $q->bindParam(':Password', $Password);
+        $q->execute();
+
+        echo "Donor data saved successfully.";
+    } catch (PDOException $e) {
+        echo "Error: " . $e->getMessage();
+    }
+}
+?>
 
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Responsive Navbar</title>
-  <link rel="stylesheet" type="text/css" href="header.css">
-  <script src="header.js"></script>
-
+    <title>Responsive Navbar</title>
+    <link rel="stylesheet" type="text/css" href="header.css">
+    <script src="header.js"></script>
 </head>
 <body>
 
-  <div class="navbar">
+<div class="navbar">
     <div>
-
-      <ul class="navbar-nav">
-      <img class="blood-logo" src="https://assets.rumsan.com/esatya/hlb-navbar-logo.png">
-        <li><a href="#">Home</a></li>
-        <li><a href="#">About Us</a></li>
-      </ul>
+        <ul class="navbar-nav">
+            <img class="blood-logo" src="https://assets.rumsan.com/esatya/hlb-navbar-logo.png">
+            <li><a href="#">Home</a></li>
+            <li><a href="#">About Us</a></li>
+        </ul>
     </div>
     <ul class="navbar-nav ml-auto">
-      <li><a href="#" onclick="openModal()">Admin</a></li>
-      <li class="dropdown">
-      <a href="#" onclick="toggleDropdown()">User</a>
-      <div id="dropdown-content" class="dropdown-content">
-            <a href="#"  style="color: black;"onclick="openSignModal()">Sign Up</a>
-            <a href="#"  style="color: black;" onclick="openModal()">Login</a>
-          </div>
-      </li>
+        <li><a href="#" onclick="openModal()">Admin</a></li>
+        <li class="dropdown">
+            <a href="#" onclick="toggleDropdown()">User</a>
+            <div id="dropdown-content" class="dropdown-content">
+                <a href="#" style="color: black;" onclick="openSignModal()">Sign Up</a>
+                <a href="#" style="color: black;" onclick="openLoginModal()">Login</a>
+            </div>
+        </li>
     </ul>
-  </div>
-  <div id="modal" class="modal">
-    <div class="modal-content">
-      <span class="close" onclick="closeModal()">&times;</span>
-      <form action="" method="post">
-        <!-- Your form fields here -->
-        <label for="username">Username:</label>
-        <input type="text" id="username" name="username" placeholder="Enter your username">
-        <br>
-        <label for="password">Password:</label>
-        <input type="password" id="password" name="password" placeholder="Enter your password">
-        <br>
-        <input type="submit" name="submit" value="Login">
-      </form>
-      <?php
-if(isset($_POST['submit']))
-{
-  $username = $_POST['username'];
-  $password = $_POST['password'];
-
-  // Prepare the query using parameterized statements to avoid SQL injection
-  $q = $db->prepare("SELECT * FROM admin WHERE uname=:username AND pass=:password");
-  $q->bindParam(':username', $username);
-  $q->bindParam(':password', $password);
-  $q->execute();
-
-  // Fetch the result
-  $res = $q->fetchAll(PDO::FETCH_OBJ);
-
-  if ($res) {
-    echo "<script>window.location.href = '../admin/admin-home.php';</script>";
-    // header('Location: ../admin/admin-home.php');
-    exit(); // Make sure to exit after redirecting
-  } else {
-    echo "<script>alert('Wrong user');</script>";
-  }
-}
-?>
 </div>
+<div id="modal" class="modal">
+    <div class="modal-content">
+        <span class="close" onclick="closeModal()">&times;</span>
+        <form action="" method="post">
+            <!-- Your form fields here -->
+            <label for="username">Username:</label>
+            <input type="text" id="username" name="username" placeholder="Enter your username">
+            <br>
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" placeholder="Enter your password">
+            <br>
+            <input type="submit" name="submit" value="Login">
+        </form>
+    </div>
 </div>
 <div id="smodal" class="smodal">
     <div class="smodal-content">
-      <span class="close" onclick="closeModal()">&times;</span>
-    
-    <form action="#" method="post">
-      <label for="name">Name:</label>
-      <input type="text" id="name" name="name" placeholder="Enter your name">
-      <br>
-      <label for="address">Address:</label>
-      <input type="text" id="address" name="address" placeholder="Enter your address">
-      <br>
-      <label for="age">Age:</label>
-      <input type="number" id="age" name="age" placeholder="Enter your age">
-      <br>
-      <label for="contact">Contact:</label>
-      <input type="text" id="contact" name="contact" placeholder="Enter your contact number">
-      <br>
-      <label for="role">Role:</label>
-      <select id="role" name="role">
-        <option value="donor">Donor</option>
-        <option value="recipient">Recipient</option>
-      </select>
-      <br>
-      <input type="submit" name="signup" value="Sign Up">
-    </form>
-  
+        <span class="close" onclick="closeModal()">&times;</span>
 
-    
+        <form action="#" method="post">
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" placeholder="Enter your name">
+            <br>
+            <label for="address">Address:</label>
+            <input type="text" id="address" name="address" placeholder="Enter your address">
+            <br>
+            <label for="age">Age:</label>
+            <input type="number" id="age" name="age" placeholder="Enter your age">
+            <br>
+            <label for="contact">Contact:</label>
+            <input type="text" id="contact" name="contact" placeholder="Enter your contact number">
+            <br>
+            <label for="bloodgroup">Blood Group:</label>
+            <input type="text" id="bloodgroup" name="bloodgroup" placeholder="Enter your blood group">
+            <br>
+            <label for="Password">Password:</label>
+            <input type="password" id="Password" name="Password" placeholder="Enter your password">
+            <br>
+            <label for="role">Role:</label>
+            <select id="role" name="role">
+                <option value="donor">Donor</option>
+                <option value="recipient">Recipient</option>
+            </select>
+            <br>
+            <input type="submit" name="signup" value="Sign Up">
+        </form>
+    </div>
 </div>
+<div id="loginmodal" class="loginmodal">
+    <div class="loginmodal-content">
+        <span class="close" onclick="closeModal()">&times;</span>
+        <form action="" method="post">
+            <!-- Your form fields here -->
+            <label for="username">Username:</label>
+            <input type="text" id="username" name="username" placeholder="Enter your username">
+            <br>
+            <label for="Password">Password:</label>
+            <input  id="password" name="password" placeholder="Enter your password">
+            <br>
+            <label for="role">Role:</label>
+            <select id="role" name="role">
+                <option value="donor">Donor</option>
+                <option value="recipient">Recipient</option>
+            </select>
+            <br>
+            <input type="submit" name="submit" value="Login">
+        </form>
+    </div>
 </div>
-
 
 </body>
 </html>

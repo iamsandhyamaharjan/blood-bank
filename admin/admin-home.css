@@ -63,3 +63,6 @@ body {
           height: auto;
           margin-right: 10px; /* Adjust the margin as needed */
         }
+        .body1{
+            display: flex;
+        }
