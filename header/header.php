@@ -4,12 +4,12 @@ include('../connect.php');
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (isset($_POST['submit'])) {
         $username = $_POST['username'];
-        $password = $_POST['password'];
+        $Password = $_POST['Password'];
 
         // Prepare the query using parameterized statements to avoid SQL injection
-        $q = $db->prepare("SELECT * FROM admin WHERE uname=:username AND pass=:password");
+        $q = $db->prepare("SELECT * FROM admin WHERE uname=:username AND pass=:Password");
         $q->bindParam(':username', $username);
-        $q->bindParam(':password', $password);
+        $q->bindParam(':Password', $Password);
         $q->execute();
 
         // Fetch the result
@@ -21,7 +21,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         } else {
             echo "<script>alert('Wrong user');</script>";
         }
-    } elseif (isset($_POST['signup'])) {
+    }elseif (isset($_POST['signup'])) {
         // Get form data
         $name = $_POST['name'];
         $address = $_POST['address'];
@@ -30,7 +30,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $bloodgroup = $_POST['bloodgroup'];
         $Password = $_POST['Password'];
         $role = $_POST['role'];
-
+    
         // Check role and save data accordingly
         if ($role === 'recipient') {
             saveRecipientData($name, $address, $age, $contact, $bloodgroup, $Password);
@@ -39,19 +39,19 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         }
     } elseif (isset($_POST['submit-login'])) {
         $username = $_POST['username'];
-        $password = $_POST['password'];
+        $Password = $_POST['Password'];
         $role = $_POST['role'];
-
+    
         try {
             if ($role === 'recipient') {
-                $q = $db->prepare("SELECT * FROM recipient WHERE name=:username AND Password=:password");
+                $q = $db->prepare("SELECT * FROM recipient WHERE name=:username AND Password=:Password");
                 $q->bindParam(':username', $username);
-                $q->bindParam(':password', $password);
+                $q->bindParam(':Password', $Password);
                 $q->execute();
-
+    
                 // Fetch the result
                 $res = $q->fetchAll(PDO::FETCH_OBJ);
-
+    
                 if ($res) {
                     echo "<script>window.location.href = '../recipient/recipient.php';</script>";
                     exit(); // Make sure to exit after redirecting
@@ -59,14 +59,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     echo "<script>alert('Wrong user');</script>";
                 }
             } elseif ($role === 'donor') {
-                $q = $db->prepare("SELECT * FROM donors WHERE name=:username AND Password=:password");
+                $q = $db->prepare("SELECT * FROM donors WHERE name=:username AND Password=:Password");
                 $q->bindParam(':username', $username);
-                $q->bindParam(':password', $password);
+                $q->bindParam(':Password', $Password);
                 $q->execute();
-
+    
                 // Fetch the result
                 $res = $q->fetchAll(PDO::FETCH_OBJ);
-
+    
                 if ($res) {
                     echo "<script>window.location.href = '../donor/donor.php';</script>";
                     exit(); // Make sure to exit after redirecting
@@ -78,6 +78,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             echo $e->getMessage();
         }
     }
+    
 }
 
 function saveRecipientData($name, $address, $age, $contact, $bloodgroup, $Password)
@@ -157,8 +158,8 @@ function saveDonorData($name, $address, $age, $contact, $bloodgroup, $Password)
             <label for="username">Username:</label>
             <input type="text" id="username" name="username" placeholder="Enter your username">
             <br>
-            <label for="password">Password:</label>
-            <input type="password" id="password" name="password" placeholder="Enter your password">
+            <label for="Password">Password:</label>
+            <input type="Password" id="Password" name="Password" placeholder="Enter your Password">
             <br>
             <input type="submit" name="submit" value="Login">
         </form>
@@ -185,7 +186,7 @@ function saveDonorData($name, $address, $age, $contact, $bloodgroup, $Password)
             <input type="text" id="bloodgroup" name="bloodgroup" placeholder="Enter your blood group">
             <br>
             <label for="Password">Password:</label>
-            <input type="password" id="Password" name="Password" placeholder="Enter your password">
+            <input type="password"  name="Password" placeholder="Enter your Password">
             <br>
             <label for="role">Role:</label>
             <select id="role" name="role">
@@ -206,7 +207,7 @@ function saveDonorData($name, $address, $age, $contact, $bloodgroup, $Password)
             <input type="text" id="username" name="username" placeholder="Enter your username">
             <br>
             <label for="Password">Password:</label>
-            <input  id="password" name="password" placeholder="Enter your password">
+            <input  id="Password" name="Password" placeholder="Enter your Password">
             <br>
             <label for="role">Role:</label>
             <select id="role" name="role">
@@ -214,7 +215,7 @@ function saveDonorData($name, $address, $age, $contact, $bloodgroup, $Password)
                 <option value="recipient">Recipient</option>
             </select>
             <br>
-            <input type="submit" name="submit" value="Login">
+            <input type="submit" name="submit-login" value="Login">
         </form>
     </div>
 </div>

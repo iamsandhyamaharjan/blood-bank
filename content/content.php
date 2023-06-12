@@ -9,9 +9,8 @@
           <link rel="stylesheet" type="text/css" href="content.css">
   <script src="../header/header.js"></script>
   <link rel="stylesheet" type="text/css" href="../footer/footer.css">
-  <script src="../footer/footer.js"></script>
+  <script src="../footer/footer.js"></script>j
 </head>
-<>
 <?php
   // Include file2.php
   include '../header/header.php';

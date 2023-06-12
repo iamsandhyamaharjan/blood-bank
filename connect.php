@@ -2,10 +2,10 @@
 $db=new PDO('mysql:host=localhost;dbname=bbms','root','');
 if($db)
 {
-          echo 'Connected';
+          echo '';
 }
 else{
-          echo'Not connected';
+          echo'';
 }
 
 
