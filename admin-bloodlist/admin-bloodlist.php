@@ -17,10 +17,8 @@
 <head>
     <title>Blood Bank Management System</title>
     <link rel="stylesheet" type="text/css" href="admin-home.css">
-    <link rel="stylesheet" type="text/css" href="recipient.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
     <script src="admin-home.js"></script>
-    <script src="recipient.js"></script>
 </head>
 <body>
 <div class="header">
@@ -44,53 +42,38 @@
 
 
     <div class="content">
-    <?php
-include('../connect.php');
-    function displayRecipients()
-{
-    global $db;
-
-    try {
-        $q = $db->query("SELECT * FROM recipient");
-        $recipients = $q->fetchAll(PDO::FETCH_ASSOC);
-
-        if (count($recipients) > 0) {
-            echo '<table>';
-            echo '<tr><th>Name</th><th>Address</th><th>Age</th><th>Contact</th><th>Blood Group</th><th>Action</th></tr>';
-            foreach ($recipients as $recipient) {
-                echo '<tr>';
-                echo '<td>' . $recipient['Name'] . '</td>';
-                echo '<td>' . $recipient['Address'] . '</td>';
-                echo '<td>' . $recipient['Age'] . '</td>';
-                echo '<td>' . $recipient['Contact'] . '</td>';
-                echo '<td>' . $recipient['BloodGroup'] . '</td>';
-                echo '<td><button onclick="deleteRecipient(' . $recipient['id'] . ')">Delete</button></td>';
-                echo '</tr>';
-            }
-            echo '</table>';
-        } else {
-            echo 'No recipients found.';
-        }
-    } catch (PDOException $e) {
-        echo "Error: " . $e->getMessage();
-    }
-}
-
-if (isset($_POST['delete_recipient'])) {
-          $recipientId = $_POST['recipient_id'];
-      
-          try {
-              $q = $db->prepare("DELETE FROM recipient WHERE id=:id");
-              $q->bindParam(':id', $recipientId);
-              $q->execute();
-      
-              echo "Recipient deleted successfully.";
-          } catch (PDOException $e) {
-              echo "Error: " . $e->getMessage();
-          }
-      }
-      ?>
-    <?php displayRecipients(); ?>
+    <div class="button-container">
+        <button onclick="createDonor()">Blood lists</button>
+    </div>
+    
+    <table>
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Blood Type</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>John Doe</td>
+                <td>O+</td>
+                <td>
+                    <button onclick="editDonor(1)">Edit</button>
+                    <button onclick="deleteDonor(1)">Delete</button>
+                </td>
+            </tr>
+            <tr>
+                <td>Jane Smith</td>
+                <td>A-</td>
+                <td>
+                    <button onclick="editDonor(2)">Edit</button>
+                    <button onclick="deleteDonor(2)">Delete</button>
+                </td>
+            </tr>
+            <!-- Add more donor rows here if needed -->
+        </tbody>
+    </table>
     </div>
     <div >
 
