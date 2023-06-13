@@ -32,7 +32,7 @@
     <div class="sidebar">
         <ul>
             <li><a href="#"><i class="fas fa-home"></i> Dashboard</a></li>
-            <li><a href="../admin-donor-management/donor.php"><i class="fas fa-users"></i> Donor Management</a></li>
+            <li><a href="../admin-recipient-management/recipient.php"><i class="fas fa-users"></i> recipient Management</a></li>
             <li><a href="../admin-recipient-management/recipient.php"><i class="fas fa-users"></i> Recipient Management</a></li>
             <li><a href="../admin-bloodlist/admin-bloodlist.php"><i class="fas fa-users"></i> List of bloods</a></li>
             <li><a href="#"><i class="fas fa-cubes"></i> Inventory Management</a></li>
@@ -64,7 +64,9 @@ include('../connect.php');
                 echo '<td>' . $recipient['Age'] . '</td>';
                 echo '<td>' . $recipient['Contact'] . '</td>';
                 echo '<td>' . $recipient['BloodGroup'] . '</td>';
-                echo '<td><button onclick="deleteRecipient(' . $recipient['id'] . ')">Delete</button></td>';
+                echo '<td><button onclick="deleteRecipient(' . $recipient['id'] . ')">Delete</button>
+                <button onclick="openEditForm(' . $recipient['id'] . ')">Edit</button>
+                </td>';
                 echo '</tr>';
             }
             echo '</table>';
@@ -91,6 +93,55 @@ if (isset($_POST['delete_recipient'])) {
       }
       ?>
     <?php displayRecipients(); ?>
+    <div id="editFormContainer">
+        <h2>Edit and Create recipient</h2>
+        <form id="editForm" action="update_recipient.php" method="POST">
+            <input type="hidden" name="recipient_id" id="editrecipientId">
+            <label for="editName">Name:</label>
+            <input type="text" name="name" id="editName" required>
+            <label for="editAddress">Address:</label>
+            <input type="text" name="address" id="editAddress" required>
+            <label for="editAge">Age:</label>
+            <input type="number" name="age" id="editAge" required>
+            <label for="editContact">Contact:</label>
+            <input type="text" name="contact" id="editContact" required>
+            <label for="editBloodGroup">Blood Group:</label>
+            <input type="text" name="blood_group" id="editBloodGroup" required>
+            <button type="submit">Save</button>
+            <button type="button" onclick="closeEditForm()">Cancel</button>
+        </form>
+    </div>
+  <script>   
+function openEditForm(id) {
+        // Fetch recipient details using AJAX
+        var xhr = new XMLHttpRequest();
+        xhr.open('GET', 'edit_recipient.php?id=' + id, true);
+        xhr.onload = function () {
+            if (xhr.status === 200) {
+                var recipient = JSON.parse(xhr.responseText);
+    
+                // Populate form fields with recipient details
+                document.getElementById('editrecipientId').value = recipient.id;
+                document.getElementById('editName').value = recipient.Name;
+                document.getElementById('editAddress').value = recipient.Address;
+                document.getElementById('editAge').value = recipient.Age;
+                document.getElementById('editContact').value = recipient.Contact;
+                document.getElementById('editBloodGroup').value = recipient.BloodGroup;
+    
+                // Show the edit form
+                document.getElementById('editFormContainer').style.display = 'block';
+            } else {
+                console.error('Error:', xhr.status);
+            }
+        };
+        xhr.send();
+    }
+    
+    function closeEditForm() {
+        // Hide the edit form
+        document.getElementById('editFormContainer').style.display = 'none';
+    }
+    </script>
     </div>
     <div >
 

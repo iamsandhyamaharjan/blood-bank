@@ -1,17 +1,4 @@
-function createDonor() {
-          // Add your create donor logic here
-          alert("Create Donor");
-      }
-      
-      function editDonor(id) {
-          // Add your edit donor logic here
-          alert("Edit Donor with ID: " + id);
-      }
-      
-      function deleteDonor(id) {
-          // Add your delete donor logic here
-          alert("Delete Donor with ID: " + id);
-      }
+
 
       function deleteDonor(id) {
         if (confirm('Are you sure you want to delete this donor?')) {
@@ -35,3 +22,42 @@ function createDonor() {
             form.submit();
         }
     }
+ 
+function openEditForm(id) {
+        // Fetch donor details using AJAX
+        var xhr = new XMLHttpRequest();
+        xhr.open('GET', 'get_donor.php?id=' + id, true);
+        xhr.onload = function () {
+            if (xhr.status === 200) {
+                var donor = JSON.parse(xhr.responseText);
+    
+                // Populate form fields with donor details
+                document.getElementById('editDonorId').value = donor.id;
+                document.getElementById('editName').value = donor.Name;
+                document.getElementById('editAddress').value = donor.Address;
+                document.getElementById('editAge').value = donor.Age;
+                document.getElementById('editContact').value = donor.Contact;
+                document.getElementById('editBloodGroup').value = donor.BloodGroup;
+    
+                // Show the edit form
+                document.getElementById('editFormContainer').style.display = 'block';
+            } else {
+                console.error('Error:', xhr.status);
+            }
+        };
+        xhr.send();
+    }
+    
+    function closeEditForm() {
+        // Hide the edit form
+        document.getElementById('editFormContainer').style.display = 'none';
+    }
+    
+
+   
+
+
+
+
+
+

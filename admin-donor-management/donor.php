@@ -69,7 +69,10 @@ function displayDonors()
                 echo '<td>' . $donor['Age'] . '</td>';
                 echo '<td>' . $donor['Contact'] . '</td>';
                 echo '<td>' . $donor['BloodGroup'] . '</td>';
-                echo '<td><button onclick="deleteDonor(' . $donor['id'] . ')">Delete</button></td>';
+                echo '<td><button onclick="deleteDonor(' . $donor['id'] . ')">Delete</button>
+                <button onclick="openEditForm(' . $donor['id'] . ')">Edit</button>
+                
+                </td>';
                 echo '</tr>';
             }
             echo '</table>';
@@ -97,6 +100,55 @@ if (isset($_POST['delete_donor'])) {
 }
 ?>
     <?php displayDonors(); ?>
+    <div id="editFormContainer">
+        <h2>Edit and Create Donor</h2>
+        <form id="editForm" action="update_donor.php" method="POST">
+            <input type="hidden" name="donor_id" id="editDonorId">
+            <label for="editName">Name:</label>
+            <input type="text" name="name" id="editName" required>
+            <label for="editAddress">Address:</label>
+            <input type="text" name="address" id="editAddress" required>
+            <label for="editAge">Age:</label>
+            <input type="number" name="age" id="editAge" required>
+            <label for="editContact">Contact:</label>
+            <input type="text" name="contact" id="editContact" required>
+            <label for="editBloodGroup">Blood Group:</label>
+            <input type="text" name="blood_group" id="editBloodGroup" required>
+            <button type="submit">Save</button>
+            <button type="button" onclick="closeEditForm()">Cancel</button>
+        </form>
+    </div>
+  <script>   
+function openEditForm(id) {
+        // Fetch donor details using AJAX
+        var xhr = new XMLHttpRequest();
+        xhr.open('GET', 'edit_donor.php?id=' + id, true);
+        xhr.onload = function () {
+            if (xhr.status === 200) {
+                var donor = JSON.parse(xhr.responseText);
+    
+                // Populate form fields with donor details
+                document.getElementById('editDonorId').value = donor.id;
+                document.getElementById('editName').value = donor.Name;
+                document.getElementById('editAddress').value = donor.Address;
+                document.getElementById('editAge').value = donor.Age;
+                document.getElementById('editContact').value = donor.Contact;
+                document.getElementById('editBloodGroup').value = donor.BloodGroup;
+    
+                // Show the edit form
+                document.getElementById('editFormContainer').style.display = 'block';
+            } else {
+                console.error('Error:', xhr.status);
+            }
+        };
+        xhr.send();
+    }
+    
+    function closeEditForm() {
+        // Hide the edit form
+        document.getElementById('editFormContainer').style.display = 'none';
+    }
+    </script>
     </div>
     <div >
 
