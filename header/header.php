@@ -1,4 +1,6 @@
 <?php
+session_start();
+
 include('../connect.php');
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -17,11 +19,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         if ($res) {
             echo "<script>window.location.href = '../admin/admin-home.php';</script>";
+            $_SESSION['admin'] = $username;
             exit(); // Make sure to exit after redirecting
         } else {
             echo "<script>alert('Wrong user');</script>";
         }
-    }elseif (isset($_POST['signup'])) {
+    } elseif (isset($_POST['signup'])) {
         // Get form data
         $name = $_POST['name'];
         $address = $_POST['address'];
@@ -30,7 +33,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $bloodgroup = $_POST['bloodgroup'];
         $Password = $_POST['Password'];
         $role = $_POST['role'];
-    
+
         // Check role and save data accordingly
         if ($role === 'recipient') {
             saveRecipientData($name, $address, $age, $contact, $bloodgroup, $Password);
@@ -41,19 +44,21 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $username = $_POST['username'];
         $Password = $_POST['Password'];
         $role = $_POST['role'];
-    
+
         try {
             if ($role === 'recipient') {
                 $q = $db->prepare("SELECT * FROM recipient WHERE name=:username AND Password=:Password");
                 $q->bindParam(':username', $username);
                 $q->bindParam(':Password', $Password);
                 $q->execute();
-    
+
                 // Fetch the result
                 $res = $q->fetchAll(PDO::FETCH_OBJ);
-    
+
                 if ($res) {
+                   
                     echo "<script>window.location.href = '../recipient/recipient.php';</script>";
+                    $_SESSION['recipient'] = $username;
                     exit(); // Make sure to exit after redirecting
                 } else {
                     echo "<script>alert('Wrong user');</script>";
@@ -63,12 +68,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 $q->bindParam(':username', $username);
                 $q->bindParam(':Password', $Password);
                 $q->execute();
-    
+
                 // Fetch the result
                 $res = $q->fetchAll(PDO::FETCH_OBJ);
-    
+
                 if ($res) {
+                  
                     echo "<script>window.location.href = '../donor/donor.php';</script>";
+                    $_SESSION['donor'] = $username;
                     exit(); // Make sure to exit after redirecting
                 } else {
                     echo "<script>alert('Wrong user');</script>";
@@ -78,7 +85,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             echo $e->getMessage();
         }
     }
-    
 }
 
 function saveRecipientData($name, $address, $age, $contact, $bloodgroup, $Password)
@@ -120,105 +126,118 @@ function saveDonorData($name, $address, $age, $contact, $bloodgroup, $Password)
         echo "Error: " . $e->getMessage();
     }
 }
+
+$isDonorLoggedIn = isset($_SESSION['donor']);
+$isRecipientLoggedIn = isset($_SESSION['recipient']);
 ?>
 
 <!DOCTYPE html>
 <html>
+
 <head>
     <title>Responsive Navbar</title>
     <link rel="stylesheet" type="text/css" href="header.css">
     <script src="header.js"></script>
 </head>
+
 <body>
 
-<div class="navbar">
-    <div>
-        <ul class="navbar-nav">
-            <img class="blood-logo" src="https://assets.rumsan.com/esatya/hlb-navbar-logo.png">
-            <li><a href="#">Home</a></li>
-            <li><a href="#">About Us</a></li>
+    <div class="navbar">
+        <div>
+            <ul class="navbar-nav">
+                <img class="blood-logo" src="https://assets.rumsan.com/esatya/hlb-navbar-logo.png">
+
+                <li><a href="#">Home</a></li>
+                <li><a href="#">About Us</a></li>
+            </ul>
+        </div>
+        <ul class="navbar-nav ml-auto">
+            <?php if ($isDonorLoggedIn || $isRecipientLoggedIn): ?>
+                <li><a href="../logout/logout.php" >Logout</a></li>
+            <?php else: ?>
+                <li><a href="#" onclick="openModal()">Admin</a></li>
+                <li class="dropdown">
+                    <a href="#" onclick="toggleDropdown()">User</a>
+                    <div id="dropdown-content" class="dropdown-content">
+                        <a href="#" style="color: black;" onclick="openSignModal()">Sign Up</a>
+                        <a href="#" style="color: black;" onclick="openLoginModal()">Login</a>
+                    </div>
+                </li>
+            <?php endif; ?>
         </ul>
     </div>
-    <ul class="navbar-nav ml-auto">
-        <li><a href="#" onclick="openModal()">Admin</a></li>
-        <li class="dropdown">
-            <a href="#" onclick="toggleDropdown()">User</a>
-            <div id="dropdown-content" class="dropdown-content">
-                <a href="#" style="color: black;" onclick="openSignModal()">Sign Up</a>
-                <a href="#" style="color: black;" onclick="openLoginModal()">Login</a>
-            </div>
-        </li>
-    </ul>
-</div>
-<div id="modal" class="modal">
-    <div class="modal-content">
-        <span class="close" onclick="closeModal()">&times;</span>
-        <form action="" method="post">
-            <!-- Your form fields here -->
-            <label for="username">Username:</label>
-            <input type="text" id="username" name="username" placeholder="Enter your username">
-            <br>
-            <label for="Password">Password:</label>
-            <input type="Password" id="Password" name="Password" placeholder="Enter your Password">
-            <br>
-            <input type="submit" name="submit" value="Login">
-        </form>
+    <div id="modal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <form action="" method="post">
+                <label for="username">Username:</label>
+                <input type="text" id="username" name="username" placeholder="Enter your username">
+                <br>
+                <label for="Password">Password:</label>
+                <input type="password" id="Password" name="Password" placeholder="Enter your password">
+                <br>
+                <input type="submit" name="submit" value="Login">
+            </form>
+        </div>
     </div>
-</div>
-<div id="smodal" class="smodal">
-    <div class="smodal-content">
-        <span class="close" onclick="closeModal()">&times;</span>
+    <div id="smodal" class="smodal">
+        <div class="smodal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
 
-        <form action="#" method="post">
-            <label for="name">Name:</label>
-            <input type="text" id="name" name="name" placeholder="Enter your name">
-            <br>
-            <label for="address">Address:</label>
-            <input type="text" id="address" name="address" placeholder="Enter your address">
-            <br>
-            <label for="age">Age:</label>
-            <input type="number" id="age" name="age" placeholder="Enter your age">
-            <br>
-            <label for="contact">Contact:</label>
-            <input type="text" id="contact" name="contact" placeholder="Enter your contact number">
-            <br>
-            <label for="bloodgroup">Blood Group:</label>
-            <input type="text" id="bloodgroup" name="bloodgroup" placeholder="Enter your blood group">
-            <br>
-            <label for="Password">Password:</label>
-            <input type="password"  name="Password" placeholder="Enter your Password">
-            <br>
-            <label for="role">Role:</label>
-            <select id="role" name="role">
-                <option value="donor">Donor</option>
-                <option value="recipient">Recipient</option>
-            </select>
-            <br>
-            <input type="submit" name="signup" value="Sign Up">
-        </form>
+            <form action="#" method="post">
+                <label for="name">Name:</label>
+                <input type="text" id="name" name="name" placeholder="Enter your name">
+                <br>
+                <label for="address">Address:</label>
+                <input type="text" id="address" name="address" placeholder="Enter your address">
+                <br>
+                <label for="age">Age:</label>
+                <input type="number" id="age" name="age" placeholder="Enter your age">
+                <br>
+                <label for="contact">Contact:</label>
+                <input type="text" id="contact" name="contact" placeholder="Enter your contact number">
+                <br>
+                <label for="bloodgroup">Blood Group:</label>
+                <input type="text" id="bloodgroup" name="bloodgroup" placeholder="Enter your blood group">
+                <br>
+                <label for="Password">Password:</label>
+                <input type="password" id="signup-password" name="Password" placeholder="Enter your password">
+                <br>
+                <label for="role">Role:</label>
+                <select id="role" name="role">
+                    <option value="donor">Donor</option>
+                    <option value="recipient">Recipient</option>
+                </select>
+                <br>
+                <input type="submit" name="signup" value="Sign Up">
+            </form>
+        </div>
     </div>
-</div>
-<div id="loginmodal" class="loginmodal">
-    <div class="loginmodal-content">
-        <span class="close" onclick="closeModal()">&times;</span>
-        <form action="" method="post">
-            <!-- Your form fields here -->
-            <label for="username">Username:</label>
-            <input type="text" id="username" name="username" placeholder="Enter your username">
-            <br>
-            <label for="Password">Password:</label>
-            <input  id="Password" name="Password" placeholder="Enter your Password">
-            <br>
-            <label for="role">Role:</label>
-            <select id="role" name="role">
-                <option value="donor">Donor</option>
-                <option value="recipient">Recipient</option>
-            </select>
-            <br>
-            <input type="submit" name="submit-login" value="Login">
-        </form>
+    <div id="loginmodal" class="loginmodal">
+        <div class="loginmodal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <form action="" method="post">
+                <label for="username">Username:</label>
+                <input type="text" id="login-username" name="username" placeholder="Enter your username">
+                <br>
+                <label for="Password">Password:</label>
+                <input type="password" id="login-password" name="Password" placeholder="Enter your password">
+                <br>
+                <label for="role">Role:</label>
+                <select id="login-role" name="role">
+                    <option value="donor">Donor</option>
+                    <option value="recipient">Recipient</option>
+                </select>
+                <br>
+                <input type="submit" name="submit-login" value="Login">
+            </form>
+        </div>
     </div>
-</div>
+<script>
+    
 
+<script>
 </body>
 </html>
+
+

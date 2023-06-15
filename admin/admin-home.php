@@ -10,7 +10,10 @@
 <div class="header">
 <img class="blood-logo" src="https://assets.rumsan.com/esatya/hlb-navbar-logo.png">
         <h1>Blood Bank Management System</h1>
-        <h1?></h1>
+
+        <h1>
+        <a href="../logout/logout.php" >Logout</a></li>
+        </h1>
     </div>
     <div class=body1 >
     <div class="sidebar">

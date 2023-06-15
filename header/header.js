@@ -1,6 +1,7 @@
 
           
 // JavaScript to toggle modal visibility
+
 function openModal() {
   var modal = document.getElementById("modal");
   modal.style.display = "block";
@@ -44,4 +45,5 @@ window.onclick = function(event) {
     modal.style.display = "none";
   }
 }
+
 
