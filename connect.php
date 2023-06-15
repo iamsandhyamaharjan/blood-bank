@@ -7,6 +7,4 @@ if($db)
 else{
           echo'';
 }
-
-
 ?>

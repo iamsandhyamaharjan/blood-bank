@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html lang="en">
 <head>
           <meta charset="UTF-8">
@@ -10,12 +10,10 @@
   <script src="../header/header.js"></script>
   <link rel="stylesheet" type="text/css" href="../footer/footer.css">
   <script src="../footer/footer.js"></script>j
-</head>
+</head> -->
 <?php
-  // Include file2.php
   include '../header/header.php';
   ?>
-  
   <div class="search-container" style="text-align: center;">
     <form method="GET" action="">
         <input type="text" name="search" placeholder="Search..." style="padding: 10px; font-size: 18px; border: 2px solid #ccc; border-radius: 5px; margin:20px">

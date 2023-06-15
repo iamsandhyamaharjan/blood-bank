@@ -1,8 +1,6 @@
 <?php
 session_start();
-
 include('../connect.php');
-
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (isset($_POST['submit'])) {
         $username = $_POST['username'];
@@ -133,11 +131,12 @@ $isRecipientLoggedIn = isset($_SESSION['recipient']);
 
 <!DOCTYPE html>
 <html>
-
 <head>
     <title>Responsive Navbar</title>
     <link rel="stylesheet" type="text/css" href="header.css">
     <script src="header.js"></script>
+    <link rel="stylesheet" type="text/css" href="../content/content.css">
+    <link rel="stylesheet" type="text/css" href="../footer/footer.css">
 </head>
 
 <body>
@@ -147,8 +146,20 @@ $isRecipientLoggedIn = isset($_SESSION['recipient']);
             <ul class="navbar-nav">
                 <img class="blood-logo" src="https://assets.rumsan.com/esatya/hlb-navbar-logo.png">
 
+                <?php if ($isRecipientLoggedIn): ?>
+                <li><a href="#">Recipient Home</a></li>
+                <li><a href="#">Profile</a></li>
+                <li><a href="#">Blood Requests</a></li>
+                <li><a href="#">History</a></li>
+            <?php elseif ($isDonorLoggedIn): ?>
+                <li><a href="#">Donor Home</a></li>
+                <li><a href="#">Profile</a></li>
+                <li><a href="#">Blood Donations</a></li>
+                <li><a href="#">History</a></li>
+            <?php else: ?>
                 <li><a href="#">Home</a></li>
                 <li><a href="#">About Us</a></li>
+            <?php endif; ?>
             </ul>
         </div>
         <ul class="navbar-nav ml-auto">
@@ -233,10 +244,7 @@ $isRecipientLoggedIn = isset($_SESSION['recipient']);
             </form>
         </div>
     </div>
-<script>
-    
 
-<script>
 </body>
 </html>
 
