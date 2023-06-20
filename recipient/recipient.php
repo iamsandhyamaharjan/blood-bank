@@ -11,7 +11,7 @@
   <link rel="stylesheet" type="text/css" href="../footer/footer.css">
   <script src="../footer/footer.js"></script>
 </head>
-<>
+
 <?php
   // Include file2.php
   include '../header/header.php';

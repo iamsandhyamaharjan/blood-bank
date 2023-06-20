@@ -147,14 +147,14 @@ $isRecipientLoggedIn = isset($_SESSION['recipient']);
                 <img class="blood-logo" src="https://assets.rumsan.com/esatya/hlb-navbar-logo.png">
 
                 <?php if ($isRecipientLoggedIn): ?>
-                <li><a href="#">Recipient Home</a></li>
-                <li><a href="#">Profile</a></li>
-                <li><a href="#">Blood Requests</a></li>
+                <li><a href="#"> Home</a></li>
+                <li><a href="../profile/profile.php">Profile</a></li>
+                <li><a href="../blood-request/blood-request.php">Blood Requests</a></li>
                 <li><a href="#">History</a></li>
             <?php elseif ($isDonorLoggedIn): ?>
-                <li><a href="#">Donor Home</a></li>
-                <li><a href="#">Profile</a></li>
-                <li><a href="#">Blood Donations</a></li>
+                <li><a href="#"> Home</a></li>
+                <li><a href="../profile/profile.php">Profile</a></li>
+                <li><a href="../blood-request-list/blood-request-list.php">Blood Donations</a></li>
                 <li><a href="#">History</a></li>
             <?php else: ?>
                 <li><a href="#">Home</a></li>

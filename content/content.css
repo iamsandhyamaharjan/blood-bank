@@ -25,3 +25,61 @@
       .search-container input[type=text] {
           padding: 5px;
       }
+      body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 20px;
+        background-color: #f1f1f1;
+    }
+
+    h1 {
+        text-align: center;
+        color: #c0392b;
+    }
+
+    h2 {
+        color: #2980b9;
+    }
+
+    p {
+        line-height: 1.5;
+        margin-bottom: 20px;
+    }
+
+    ul {
+        padding-left: 20px;
+        margin-bottom: 20px;
+    }
+
+    li {
+        margin-bottom: 10px;
+    }
+
+    a {
+        color: #2980b9;
+        text-decoration: none;
+    }
+
+    a:hover {
+        text-decoration: underline;
+    }
+
+    @media (max-width: 600px) {
+        h1 {
+            font-size: 24px;
+        }
+
+        h2 {
+            font-size: 18px;
+        }
+
+        p {
+            font-size: 14px;
+        }
+
+        ul {
+            font-size: 14px;
+        }
+    }
+
+   

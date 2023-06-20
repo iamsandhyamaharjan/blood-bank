@@ -66,6 +66,37 @@
     }
     ?>
 
+<h2>About Us</h2>
+    <p>
+        The Blood Bank Management System is a platform designed to streamline the process of managing and tracking blood donations, requests, and inventory. Our system helps connect blood donors with those in need and ensures efficient blood supply management.
+    </p>
+
+    <h2>Services</h2>
+    <ul>
+        <li>Blood Donation: Find information about blood donation, eligibility criteria, and schedule your donation.</li>
+        <li>Blood Requests: Place requests for required blood types and connect with potential donors.</li>
+        <li>Inventory Management: Keep track of available blood units, expiration dates, and update inventory levels.</li>
+        <li>Donor Management: Maintain a database of registered donors, their contact information, and donation history.</li>
+        <li>Reports and Analytics: Generate reports and analyze blood donation patterns to optimize operations.</li>
+    </ul>
+
+    <h2>Why Choose Us</h2>
+    <ul>
+        <li>Reliable Blood Supply: We ensure a constant supply of safe and quality blood for medical emergencies.</li>
+        <li>User-Friendly Interface: Our user-friendly system simplifies the donation and request processes.</li>
+        <li>Privacy and Security: We prioritize the confidentiality and security of donor and patient information.</li>
+        <li>Efficient Management: Our system automates various tasks, reducing manual effort and improving efficiency.</li>
+        <li>Community Engagement: Join a community of blood donors and recipients, making a positive impact on society.</li>
+    </ul>
+
+    <h2>Contact Us</h2>
+    <p>
+        If you have any questions or need assistance, please feel free to contact our support team at <a href="mailto:support@bloodbank.com">support@bloodbank.com</a>.
+    </p>
+</body>
+</html>
+
+
   <?php
   // Include file2.php
   include '../footer copy/footer.php';
