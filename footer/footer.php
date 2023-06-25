@@ -38,7 +38,7 @@
   include '../header/header.php';
   ?>
   <!-- Your page content here -->
-s,mdksbmdnmsvdnbsvdnbsdvnbsbdvsbndvsndvsndvs
+
   <footer class="footer">
     <img class="footer-logo" src="https://assets.rumsan.com/esatya/hlb-navbar-logo.png" alt="Lifesaver Logo">
     <p class="footer-text">© 2023 Lifesaver Blood Bank. All rights reserved.</p>
