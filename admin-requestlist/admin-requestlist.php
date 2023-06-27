@@ -24,17 +24,17 @@
 <div class="header">
 <img class="blood-logo" src="https://assets.rumsan.com/esatya/hlb-navbar-logo.png">
         <h1>Blood Bank Management System</h1>
-        <h1?></h1>
+        <h1> <a href="../logout/logout.php" >Logout</a></li></h1>
     </div>
     <div class=body1 >
     <div class="sidebar">
-        <ul>
-            <li><a href="#"><i class="fas fa-home"></i> Dashboard</a></li>
+    <ul>
+            <li><a href="../admin/admin-home.php"><i class="fas fa-home"></i> Dashboard</a></li>
             <li><a href="../admin-donor-management/donor.php"><i class="fas fa-users"></i> Donor Management</a></li>
             <li><a href="../admin-recipient-management/recipient.php"><i class="fas fa-users"></i> Recipient Management</a></li>
-            <li><a href="../admin-bloodlist/admin-bloodlist.php"><i class="fas fa-users"></i> List of bloods</a></li>
-            <li><a href="#"><i class="fas fa-cubes"></i> Inventory Management</a></li>
-            <li><a href="#"><i class="fas fa-list-alt"></i> Blood Requests</a></li>
+            <li><a href="../admin-donationlist/admin-donationlist.php"><i class="fas fa-list-alt"></i> Donation Lists</a></li>
+            <li><a href="../admin-requestlist/admin-requestlist.php"><i class="fas fa-list-alt"></i> Request List</a></li>
+           
             <li><a href="#"><i class="fas fa-chart-bar"></i> Reports</a></li>
             <li><a href="#"><i class="fas fa-cog"></i> Settings</a></li>
         </ul>
@@ -42,36 +42,47 @@
 
 
     <div class="content">
-    <div class="button-container">
-        <button onclick="createDonor()">Blood lists</button>
-    </div>
     
+    <?php
+// Include file2.php
+// include '../header/header.php';
+include('../connect.php');
+
+// Retrieve blood requests from the database
+try {
+    // Assuming you have a valid PDO database connection ($db)
+    $query = $db->query("SELECT * FROM request");
+    $bloodRequests = $query->fetchAll(PDO::FETCH_ASSOC);
+} catch (PDOException $e) {
+    echo "Error: " . $e->getMessage();
+}
+?>
+
+    <h2>Requested Blood List</h2>
+   
     <table>
         <thead>
             <tr>
                 <th>Name</th>
                 <th>Blood Type</th>
+                <th>Contact</th>
                 <th>Action</th>
             </tr>
         </thead>
         <tbody>
-            <tr>
-                <td>John Doe</td>
-                <td>O+</td>
-                <td>
-                    <button onclick="editDonor(1)">Edit</button>
-                    <button onclick="deleteDonor(1)">Delete</button>
-                </td>
-            </tr>
-            <tr>
-                <td>Jane Smith</td>
-                <td>A-</td>
-                <td>
-                    <button onclick="editDonor(2)">Edit</button>
-                    <button onclick="deleteDonor(2)">Delete</button>
-                </td>
-            </tr>
-            <!-- Add more donor rows here if needed -->
+            <?php foreach ($bloodRequests as $request) : ?>
+                <tr>
+                    <td><?php echo $request['Name']; ?></td>
+                    <td><?php echo $request['BloodGroup']; ?></td>
+                    <td><?php echo $request['Contact']; ?></td>
+                    <td>
+                        <form method="POST" action="donate.php">
+                            <input type="hidden" name="request_id" value="<?php echo $request['id']; ?>">
+                            <input type="submit" value="Donate">
+                        </form>
+                    </td>
+                </tr>
+            <?php endforeach; ?>
         </tbody>
     </table>
     </div>

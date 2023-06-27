@@ -67,7 +67,9 @@ body {
   padding: 20px;
   border: 1px solid #888;
   width: 50%;
+  margin-bottom: 20px; /* Add bottom margin */
 }
+
 .loginmodal {
   display: none;
   position: fixed;
@@ -85,6 +87,7 @@ body {
   padding: 20px;
   border: 1px solid #888;
   width: 50%;
+  margin-bottom: 20px; /* Add bottom margin */
 }
 .modal-content {
   background-color: #f9f9f9;
