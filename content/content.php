@@ -1,4 +1,4 @@
-<!-- <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
           <meta charset="UTF-8">
@@ -6,22 +6,31 @@
           <meta name="viewport" content="width=device-width, initial-scale=1.0">
           <title>Document</title>
           <link rel="stylesheet" type="text/css" href="../header/header.css">
+          <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Caprasimo&display=swap" rel="stylesheet">
           <link rel="stylesheet" type="text/css" href="content.css">
   <script src="../header/header.js"></script>
   <link rel="stylesheet" type="text/css" href="../footer/footer.css">
-  <script src="../footer/footer.js"></script>j
-</head> -->
+  <script src="../footer/footer.js"></script>
+</head>
 <?php
   include '../header/header.php';
   ?>
+<div style="position: relative;">
+    <img style="width: 100%; height: 10%;" src="https://assets.rumsan.com/esatya/hlb-banner.jpg" alt="Full Width Image">
+    <h2 style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); text-align: left; color: white; font-size: 49px; font-weight: bold;font-family:'Dancing Script', cursive;">Unleash the Hero Within: Donate Blood, Inspire Hope, and Be the Lifesaver Someone Desperately Needs. Donate Blood, Save Lives!</h2>
+</div>
+
   <div class="search-container" style="text-align: center;">
     <form method="GET" action="">
         <input type="text" name="search" placeholder="Search..." style="padding: 10px; font-size: 18px; border: 2px solid #ccc; border-radius: 5px; margin:20px">
         <input type="submit" value="Search" style="padding: 10px 20px; font-size: 18px; background-color:#cf3d3c; color: white; border: none; border-radius: 5px; cursor: pointer;">
     </form>
+
 </div>
 
-  <?php
+  <!-- <?php
 
     // Sample data
     $donors = [
@@ -64,7 +73,7 @@
         echo '</div>';
         echo '</div>';
     }
-    ?>
+?> -->
 
 <h2>About Us</h2>
     <p>
