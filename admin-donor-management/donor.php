@@ -59,11 +59,11 @@ function displayDonors()
         $donors = $q->fetchAll(PDO::FETCH_ASSOC);
 
         if (count($donors) > 0) {
-            echo '<table>';
-            echo '<tr><th>Name</th><th>Address</th><th>Age</th><th>Contact</th><th>Blood Group</th><th>Action</th></tr>';
+            echo '<table class="content-table">';
+            echo '<thead><tr><th>Name</th><th>Address</th><th>Age</th><th>Contact</th><th>Blood Group</th><th>Action</th></tr></thead>';
             print_r($donors[1]); 
             foreach ($donors as $donor) {
-                echo '<tr>';
+                echo '<tbody><tr>';
                 echo '<td>' . $donor['Name'] . '</td>';
                 echo '<td>' . $donor['Address'] . '</td>';
                 echo '<td>' . $donor['Age'] . '</td>';
@@ -73,7 +73,7 @@ function displayDonors()
                 <button onclick="openEditForm(' . $donor['id'] . ')">Edit</button>
                 
                 </td>';
-                echo '</tr>';
+                echo '</tr></tbody>';
             }
             echo '</table>';
         } else {

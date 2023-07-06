@@ -55,7 +55,7 @@ include('../connect.php');
         $recipients = $q->fetchAll(PDO::FETCH_ASSOC);
 
         if (count($recipients) > 0) {
-            echo '<table>';
+            echo '<table class="content-table">';
             echo '<tr><th>Name</th><th>Address</th><th>Age</th><th>Contact</th><th>Blood Group</th><th>Action</th></tr>';
             foreach ($recipients as $recipient) {
                 echo '<tr>';

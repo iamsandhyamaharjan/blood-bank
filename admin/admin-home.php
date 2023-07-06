@@ -3,6 +3,7 @@
 <head>
     <title>Blood Bank Management System</title>
     <link rel="stylesheet" type="text/css" href="admin-home.css">
+    <link rel="stylesheet" type="text/css" href="blood-donate-list.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
     <script src="admin-home.js"></script>
 </head>

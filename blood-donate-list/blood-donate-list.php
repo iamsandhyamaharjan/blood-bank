@@ -15,11 +15,14 @@ try {
 <!DOCTYPE html>
 <html>
 <head>
+    
+<link rel="stylesheet" type="text/css" href="blood-donate-list.css">
+ 
     <title>Donated Blood</title>
 </head>
 <body>
     <h2>Blood Donation</h2>
-    <table>
+    <table class="content-table">
         <thead>
             <tr>
                 <th>Name</th>

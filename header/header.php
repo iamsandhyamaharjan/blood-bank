@@ -136,7 +136,7 @@ $isRecipientLoggedIn = isset($_SESSION['recipient']);
     <link rel="stylesheet" type="text/css" href="header.css">
     <script src="header.js"></script>
     <link rel="stylesheet" type="text/css" href="../content/content.css">
-    <link rel="stylesheet" type="text/css" href="../footer/footer.css">
+    <link rel="stylesheet" type="text/css" href="../footer/footer.css"><link rel="stylesheet" type="text/css" href="blood-donate-list.css">
 </head>
 
 <body>
@@ -194,70 +194,60 @@ $isRecipientLoggedIn = isset($_SESSION['recipient']);
         </div>
     </div>
     <div id="smodal" class="smodal">
-        <div class="smodal-content">
-            <span class="close" onclick="closeModal()">&times;</span>
+    <div class="smodal-content">
+        <span class="close" onclick="closeModal()">&times;</span>
 
-            <form action="#" method="post">
-    <table>
-      <tr>
-        <td><label for="name">Name:</label></td>
-        <td><input type="text" id="name" name="name" placeholder="Enter your name"></td>
-      </tr>
-      <tr>
-        <td style="padding-top: 10px;"><label for="address">Address:</label></td>
-        <td style="padding-top: 10px;"><input type="text" id="address" name="address" placeholder="Enter your address"></td>
-      </tr>
-      <tr>
-        <td style="padding-top: 10px;"><label for="age">Age:</label></td>
-        <td style="padding-top: 10px;"><input type="number" id="age" name="age" placeholder="Enter your age"></td>
-      </tr>
-      <tr>
-        <td style="padding-top: 10px;"><label for="contact">Contact:</label></td>
-        <td style="padding-top: 10px;"><input type="text" id="contact" name="contact" placeholder="Enter your contact number"></td>
-      </tr>
-      <tr>
-        <td style="padding-top: 10px;"><label for="bloodgroup">Blood Group:</label></td>
-        <td style="padding-top: 10px;"><input type="text" id="bloodgroup" name="bloodgroup" placeholder="Enter your blood group"></td>
-      </tr>
-      <tr>
-        <td style="padding-top: 10px;"><label for="signup-password">Password:</label></td>
-        <td style="padding-top: 10px;"><input type="password" id="signup-password" name="password" placeholder="Enter your password"></td>
-      </tr>
-      <tr>
-        <td style="padding-top: 10px;"><label for="role">Role:</label></td>
-        <td style="padding-top: 10px;">
-          <select id="role" name="role">
-            <option value="donor">Donor</option>
-            <option value="recipient">Recipient</option>
-          </select>
-        </td>
-      </tr>
-    </table>
-    <br>
-    <input type="submit" name="signup" value="Sign Up">
-  </form>
-
-        </div>
+        <form action="#" method="post">
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" placeholder="Enter your name">
+            <br>
+            <label for="address">Address:</label>
+            <input type="text" id="address" name="address" placeholder="Enter your address">
+            <br>
+            <label for="age">Age:</label>
+            <input type="number" id="age" name="age" placeholder="Enter your age">
+            <br>
+            <label for="contact">Contact:</label>
+            <input type="text" id="contact" name="contact" placeholder="Enter your contact number">
+            <br>
+            <label for="bloodgroup">Blood Group:</label>
+            <input type="text" id="bloodgroup" name="bloodgroup" placeholder="Enter your blood group">
+            <br>
+            <label for="Password">Password:</label>
+            <input type="password"  name="Password" placeholder="Enter your Password">
+            <br>
+            <label for="role">Role:</label>
+            <select id="role" name="role">
+                <option value="donor">Donor</option>
+                <option value="recipient">Recipient</option>
+            </select>
+            <br>
+            <input type="submit" name="signup" value="Sign Up">
+        </form>
     </div>
-    <div id="loginmodal" class="loginmodal">
-        <div class="loginmodal-content">
-            <span class="close" onclick="closeModal()">&times;</span>
-            <form action="#" method="post">
-    <table>
-      <tr>
-        <td><label for="login-username">Username:</label></td>
-        <td><input type="text" id="login-username" name="username" placeholder="Enter your username"></td>
-      </tr>
-      <tr>
-        <td style="padding-top: 10px;"><label for="login-password">Password:</label></td>
-        <td style="padding-top: 10px;><input type="password" id="login-password" name="password" placeholder="Enter your password"></td>
-      </tr>
-    </table>
-    <br>
-    <input type="submit" name="login" value="Login">
-  </form>
-        </div>
+</div>
+<div id="loginmodal" class="loginmodal">
+    <div class="loginmodal-content">
+        <span class="close" onclick="closeModal()">&times;</span>
+        <form action="" method="post">
+            <!-- Your form fields here -->
+            <label for="username">Username:</label>
+            <input type="text" id="username" name="username" placeholder="Enter your username">
+            <br>
+            <label for="Password">Password:</label>
+            <input  id="Password" name="Password" placeholder="Enter your Password">
+            <br>
+            <label for="role">Role:</label>
+            <select id="role" name="role">
+                <option value="donor">Donor</option>
+                <option value="recipient">Recipient</option>
+            </select>
+            <br>
+            <input type="submit" name="submit-login" value="Login">
+        </form>
     </div>
+</div>
+    
 
 </body>
 </html>
