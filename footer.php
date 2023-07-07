@@ -10,7 +10,7 @@
       position: relative;
       min-height: 100vh;
     }
-    .footer {
+    footer {
       background-color: #cf3d3c;
       color: white;
       padding: 20px;
@@ -18,15 +18,21 @@
       position: fixed;
       left: 0;
       bottom: 0;
-      width: 100%;
+      right: 0;
+      display: flex;
+      align-items: center;
+      height: 50px;
     }
-    .footer-logo {
-      width: 100px;
-      height: auto;
-      margin-bottom: 10px;
+    footer img {
+      width: 10%;
+      height: 60px;
     }
-    .footer-text {
-      margin: 0;
+
+    footer p {
+      font-size: 20px;
+      margin-left: 20px;
+    }
+    
   </style>
 </head>
 <body>
