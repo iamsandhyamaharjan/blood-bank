@@ -136,10 +136,12 @@ $isRecipientLoggedIn = isset($_SESSION['recipient']);
     <link rel="stylesheet" type="text/css" href="header.css">
     <script src="header.js"></script>
     <link rel="stylesheet" type="text/css" href="../content/content.css">
-    <link rel="stylesheet" type="text/css" href="../footer/footer.css"><link rel="stylesheet" type="text/css" href="blood-donate-list.css">
+    <link rel="stylesheet" type="text/css" href="../footer/footer.css">
+    <link rel="stylesheet" type="text/css" href="blood-donate-list.css">
 </head>
 
 <body>
+
 
     <div class="navbar">
         <div>
@@ -159,7 +161,7 @@ $isRecipientLoggedIn = isset($_SESSION['recipient']);
                 <li><a href="../blood-request-list/blood-request-list.php">Blood Requests</a></li>
                 
             <?php else: ?>
-                <li><a href="#">Home</a></li>
+                <li><a href="#">Home</a></li> 
                 <li><a href="#">About Us</a></li>
             <?php endif; ?>
             </ul>
