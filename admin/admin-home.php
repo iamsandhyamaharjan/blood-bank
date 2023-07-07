@@ -17,7 +17,7 @@
             <h1>Blood Bank Management System</h1>
         </div>
         <div class="logout">
-            <a href="../logout/logout.php">Logout</a>
+            <a href="../logout/logout.php">Logout</a> 
         </div>
     </header>
    
