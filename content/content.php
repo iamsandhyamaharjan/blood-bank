@@ -108,7 +108,7 @@
 
   <?php
   // Include file2.php
-  include '../footer copy/footer.php';
+  include '../footer/footer.php';
   ?> 
 </body>
 </html>
