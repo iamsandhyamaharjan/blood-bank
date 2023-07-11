@@ -255,5 +255,3 @@ $isRecipientLoggedIn = isset($_SESSION['recipient']);
 
 </body>
 </html>
-
-

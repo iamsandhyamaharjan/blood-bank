@@ -3,23 +3,25 @@
 <head>
     <title>Blood Bank Management System</title>
     <link rel="stylesheet" type="text/css" href="admin-home.css">
-    <link rel="stylesheet" type="text/css" href="blood-donate-list.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
     <script src="admin-home.js"></script>
+    
+    <!-- link to blood donation css -->
+    <link rel="stylesheet" type="text/css" href="blood-donate-list.css">
+
+    <!-- link to admin-home css -->
+    <link rel="stylesheet" href="admin-header.css">
+
+    <!-- link to footer css -->
+    <link rel="stylesheet" type="text/css" href="../footer/footer.css">
+
+    <!-- link to font-awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
 </head>
 <body>
 
-    <header>
-        <div class="logo">
-            <img src="https://assets.rumsan.com/esatya/hlb-navbar-logo.png" alt="">
-        </div>
-        <div class="title">
-            <h1>Blood Bank Management System</h1>
-        </div>
-        <div class="logout">
-            <a href="../logout/logout.php">Logout</a> 
-        </div>
-    </header>
+    <?php
+        include 'admin-header.php';
+    ?>
    
     <main>
         <aside>
@@ -38,6 +40,10 @@
             <!-- rest of your content goes here -->
         </div>
     </main>
+
+    <?php
+        include '../footer/footer.php';
+    ?>
 
 </body>
 </html>
