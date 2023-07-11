@@ -1,0 +1,53 @@
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+header {
+    background-color: #cf3d3c;
+    color: #FFFFFF;
+    display:flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 100px;
+}
+
+.logo {
+  width: 16%;
+  height: 80px;
+}
+
+
+.logo img {
+  width: 100%;
+  height: 80px;
+}
+
+.title {
+  width: 74%;
+  color: white;
+}
+
+.title h1 {
+    font-size: 50px;
+    text-align: center;
+}
+
+.logout {
+  width: 10%;
+  text-align: center;
+}
+
+.logout a{
+  font-size: 26px;
+  text-decoration: none;
+  color: white;
+  margin: 0 auto;
+}
+
+.logout a:hover {
+  text-decoration: underline;
+  color: black;
+}
