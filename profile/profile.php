@@ -118,8 +118,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <input type="submit" name="submit1" value="Update">
 </form>
 
-<?php
-include '../footer copy/footer.php';
-?>
+    <?php
+        include '../footer/footer.php';
+    ?>
 </body>
 </html>
