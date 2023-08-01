@@ -1,3 +1,17 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Profile</title>
+    <!-- Add your CSS stylesheets and other header elements -->
+</head>
+<link rel="stylesheet" type="text/css" href="../header/header.css">
+<link rel="stylesheet" type="text/css" href="content.css">
+<script src="../header/header.js"></script>
+<link rel="stylesheet" type="text/css" href="../footer copy/footer.css">
+<link rel="stylesheet" type="text/css" href="blood-donate.css">
+<script src="../footer/footer.js"></script>
+<body>
 <?php
 // Include file2.php
 include '../header/header.php';

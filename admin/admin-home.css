@@ -46,7 +46,7 @@ header {
 }
 
 .logout a:hover {
-  text-decoration: underline;
+
   color: black;
 }
 
@@ -56,10 +56,11 @@ main{
 
 aside {
   width: 19%;
-  background-color: black;
+  background-color: #cf3d3c;
   color: #FFFFFF;
   padding: 20px;
-  height: 610px;
+  height: 1300px;
+  margin-right:30px;
 }
 
 aside a {
@@ -80,7 +81,9 @@ aside a i {
 }
 
 aside a:hover {
-  color: #cf3d3c;
+  color: black;
+  
+  font-weight: bold;
 }
 
 .content {

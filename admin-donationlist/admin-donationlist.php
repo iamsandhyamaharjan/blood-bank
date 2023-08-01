@@ -43,7 +43,7 @@
         <div class="content">
 
             <div class="button-container">
-                <button onclick="createDonor()">Blood Lists</button>
+                <button onclick="createDonor()">Donated Blood Lists</button>
             </div>
 
             <?php
@@ -79,7 +79,7 @@
                             <td>
                                 <form method="POST" action="donate.php">
                                     <input type="hidden" name="request_id" value="<?php echo $donation['id']; ?>">
-                                    <input type="submit" value="Donate">
+                                    <button type="submit" value="Donate">Donate1</button>
                                 </form>
                             </td>
                         </tr>

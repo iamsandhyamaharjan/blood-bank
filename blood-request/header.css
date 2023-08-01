@@ -1,0 +1,212 @@
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+header {
+  background-color: #cf3d3c;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 10px;
+  height: 100px;
+}
+
+.logo {
+  width: 14%;
+}
+
+.logo img {
+  width: 100%;
+  height: 80px;
+}
+
+nav {
+  width: 66%;
+}
+
+nav a, .user a {
+  font-size: 24px;
+  text-decoration: none;
+  color: white;
+  margin-left: 30px;
+}
+
+.user {
+  width: 20%;
+  display: flex;
+  align-items: center;
+  justify-content: end;
+  padding-right: 40px;
+  gap: 10px;
+}
+
+.user a {
+  font-size: 24px;
+  text-decoration: none;
+  color: white;
+}
+
+.dropdown {
+  position: relative;
+}
+
+.dropdown-content {
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 120px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+  display: none;
+  border-radius: 20px;
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+.dropdown-content a {
+  display: block;
+  color:black;
+  font-size: 20px;
+  text-align: center;
+  margin: 20px auto;
+}
+
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.modal-content {
+  background-color: #f9f9f9;
+  margin: 15% auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 30%;
+  border-radius: 20px;
+}
+
+form {
+  margin-top: 50px;
+  margin-left:40px;
+  display: flex;
+  flex-direction: column;
+  align-items: left;
+}
+
+form input {
+  width: 50%; /* Set the input width to 100% to occupy the container */
+  max-width: 400px; /* Limit the input width to a maximum value */
+  border-radius: 20px;
+  padding: 10px 20px;
+  margin-bottom: 20px;
+  border: 1px solid #ccc; /* Use a light gray border color */
+}
+
+
+
+.smodal {
+  display: none;
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.smodal-content {
+  background-color: #f9f9f9;
+  margin: 30px auto 0 auto;
+  padding: 20px 20px 10px 20px;
+  border: 1px solid #888;
+  width: 40%;
+  margin-bottom: 20px;
+  border-radius: 20px;
+}
+
+.register {
+  width: 96%;
+  margin: 60px auto 0 auto;
+}
+
+.register input {
+  border-radius: 0;
+  padding: 10px;
+  margin-top: 10px;
+  border: 1px solid gray;
+}
+
+.register input[type="submit"] {
+  margin-top: 20px;
+  width: 30%;
+}
+
+.loginmodal {
+  display: none;
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+.loginmodal-content {
+  background-color: #f9f9f9;
+  margin: 15% auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 30%;
+  margin-bottom: 20px; /* Add bottom margin */
+  border-radius: 20px;
+}
+
+.role {
+  display: flex;
+  align-items: center;
+  padding-left: 10px;
+  margin-bottom: 20px;
+}
+
+.role label {
+  font-size: 16px;
+}
+
+select {
+  padding: 5px;
+  cursor: pointer;
+}
+
+.close {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+  cursor: pointer;
+}
+h1{
+  align-items: center;
+}
+button{
+ 
+  padding:5px;
+  border-radius:20px;
+ background-color: #cf3d3c;
+ color: #f9f9f9;
+ width:80px;
+}

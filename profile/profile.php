@@ -8,6 +8,7 @@
 <link rel="stylesheet" type="text/css" href="content.css">
 <script src="../header/header.js"></script>
 <link rel="stylesheet" type="text/css" href="../footer/footer.css">
+<link rel="stylesheet" type="text/css" href="profile.css">
 <script src="../footer/footer.js"></script>
 <body>
 <?php

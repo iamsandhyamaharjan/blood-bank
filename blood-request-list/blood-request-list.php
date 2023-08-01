@@ -1,3 +1,17 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Profile</title>
+    <!-- Add your CSS stylesheets and other header elements -->
+</head>
+<link rel="stylesheet" type="text/css" href="../header/header.css">
+<link rel="stylesheet" type="text/css" href="content.css">
+<script src="../header/header.js"></script>
+<link rel="stylesheet" type="text/css" href="../footer copy/footer.css">
+<link rel="stylesheet" type="text/css" href="blood-request-list.css">
+<script src="../footer/footer.js"></script>
+<body>
+
 <?php
 // Include file2.php
 include '../header/header.php';
@@ -19,7 +33,7 @@ try {
 </head>
 <body>
     <h2>Blood Requests</h2>
-    <table>
+    <table class="content-table">
         <thead>
             <tr>
                 <th>Name</th>
@@ -37,7 +51,7 @@ try {
                     <td>
                         <form method="POST" action="donate.php">
                             <input type="hidden" name="request_id" value="<?php echo $request['id']; ?>">
-                            <input type="submit" value="Donate">
+                            <button type="submit" value="Donate">Donate</button>
                         </form>
                     </td>
                 </tr>

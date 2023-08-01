@@ -5,6 +5,11 @@
     box-sizing: border-box;
 }
 
+.content {
+    margin: 40px 0;
+    padding-left: 40px;
+}
+
 .content-table{
     border-collapse:collapse;
     margin:25px 0;
@@ -13,22 +18,25 @@
     border-radius:5px 5px 0 0 ;
     overflow:hidden;
     box-shadow:0 0 20px rgba(0,0,0,0.15);
+    font-size: 20px;
 }
+
 
 .content-table thead tr {
     background-color: #cf3d3c;
     color:#ffffff;
     text-align:left;
     font-weight:bold;
-}
+    }
 
 .content-table th,
 .content-table td{
-    padding:12px 15px;
+    padding: 15px;
 }
 
 .content-table tbody tr{
     border-bottom:1px solid #dddddddd;
+    text-align: center;
 }
 
 .content-table tbody tr:nth-of-type(even){
@@ -39,3 +47,49 @@
     border-bottom:2px solid #cf3d3c;
 }
 
+.button-container button {
+    padding: 10px 20px;
+    background-color: #cf3d3c;
+    border: none;
+    color: white;
+    cursor: pointer;
+    font-size: 20px;
+    border-radius: 10px;
+    margin-bottom: 40px;
+}
+button {
+    padding: 6px 10px;
+    cursor: pointer;
+    background-color: #cf3d3c;
+    border: none;
+    color: white;
+    border-radius: 6px;
+}
+form {
+    margin-top: 50px;
+    display: flex;
+    flex-direction: column;
+    align-items: left;
+  }
+  
+  form input {
+    width: 100%; /* Set the input width to 100% to occupy the container */
+    max-width: 400px; /* Limit the input width to a maximum value */
+    border-radius: 20px;
+    padding: 10px 20px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc; /* Use a light gray border color */
+  }
+ form button {
+    width: 20%; /* Set the input width to 100% to occupy the container */
+    max-width: 200px; /* Limit the input width to a maximum value */
+    cursor: pointer;
+    background-color: #cf3d3c;
+    color: white;
+    border: none;
+    letter-spacing: 2px;
+    font-weight: bold;
+    margin-bottom: 20px;
+  }
+
+  

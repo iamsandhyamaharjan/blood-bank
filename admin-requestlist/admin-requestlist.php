@@ -53,8 +53,9 @@
                 }
             ?>
 
-            <h2>Requested Blood List</h2>
-        
+<div class="button-container">
+                <button onclick="createDonor()">Requested Blood Lists</button>
+            </div>
             <table class="content-table">
                 <thead>
                     <tr>

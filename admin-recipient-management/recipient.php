@@ -54,17 +54,17 @@
                         if (count($recipients) > 0)
                         {
                             echo '<table class="content-table">';
-                            echo '<tr><th>Name</th><th>Address</th><th>Age</th><th>Contact</th><th>Blood Group</th><th>Action</th></tr>';
+                            echo '<tr><thead><th>Name</th><th>Address</th><th>Age</th><th>Contact</th><th>Blood Group</th><th>Action</th></thead></tr>';
                             foreach ($recipients as $recipient)
                             {
-                                echo '<tr>';
+                                echo '<tbody><tr>';
                                 echo '<td>' . $recipient['Name'] . '</td>';
                                 echo '<td>' . $recipient['Address'] . '</td>';
                                 echo '<td>' . $recipient['Age'] . '</td>';
                                 echo '<td>' . $recipient['Contact'] . '</td>';
                                 echo '<td>' . $recipient['BloodGroup'] . '</td>';
                                 echo '<td> <button onclick="openEditForm(' . $recipient['id'] . ')">Edit</button> <button onclick="deleteRecipient(' . $recipient['id'] . ')">Delete</button> </td>';
-                                echo '</tr>';
+                                echo '</tr></tbody>';
                             }
                             echo '</table>';
                         } 
@@ -94,7 +94,9 @@
                 }
 
             ?>
-
+<div class="button-container">
+                <button onclick="createDonor()">Receipient Lists</button>
+            </div>
             <?php displayRecipients(); ?>
 
                 <div id="editFormContainer">

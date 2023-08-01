@@ -1,0 +1,17 @@
+form {
+          margin-top: 50px;
+          margin-left:40px;
+          display: flex;
+          flex-direction: column;
+          align-items: left;
+        }
+        
+        form input {
+          width: 50%; /* Set the input width to 100% to occupy the container */
+          max-width: 400px; /* Limit the input width to a maximum value */
+          border-radius: 20px;
+          padding: 10px 20px;
+          margin-bottom: 20px;
+          border: 1px solid #ccc; /* Use a light gray border color */
+        }
+        

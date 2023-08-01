@@ -41,7 +41,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <label for="contact">Contact:</label>
         <input type="text" id="contact" name="contact" required><br><br>
 
-        <input type="submit" value="Submit">
+        <button type="submit" value="Submit">Submit</button>
     </form>
 </body>
 </html>

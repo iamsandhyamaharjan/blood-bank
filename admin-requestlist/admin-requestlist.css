@@ -4,7 +4,16 @@
     padding: 0;
     box-sizing: border-box;
 }
-
+.button-container button {
+    padding: 10px 20px;
+    background-color: #cf3d3c;
+    border: none;
+    color: white;
+    cursor: pointer;
+    font-size: 20px;
+    border-radius: 10px;
+    margin-bottom: 40px;
+}
 .content {
     margin: 40px 0;
     padding-left: 40px;
@@ -50,8 +59,9 @@
 form input {
     padding: 6px 10px;
     cursor: pointer;
-    background-color: black;
+    background-color: #cf3d3c;
     border: none;
     color: white;
     border-radius: 6px;
 }
+

@@ -15,8 +15,16 @@ try {
 <!DOCTYPE html>
 <html>
 <head>
-    
+    <title>Profile</title>
+    <!-- Add your CSS stylesheets and other header elements -->
+</head>
+<link rel="stylesheet" type="text/css" href="../header/header.css">
 <link rel="stylesheet" type="text/css" href="blood-donate-list.css">
+<script src="../header/header.js"></script>
+<link rel="stylesheet" type="text/css" href="../footer copy/footer.css">
+<link rel="stylesheet" type="text/css" href="profile.css">
+<script src="../footer/footer.js"></script>
+<body>
  
     <title>Donated Blood</title>
 </head>
@@ -40,7 +48,7 @@ try {
                     <td>
                         <form method="POST" action="donate.php">
                             <input type="hidden" name="request_id" value="<?php echo $donation['id']; ?>">
-                            <input type="submit" value="Donate">
+                            <button type="submit"  value="Donate">Donate1</button>
                         </form>
                     </td>
                 </tr>
