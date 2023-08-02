@@ -4,13 +4,7 @@
     padding: 0;
     box-sizing: border-box;
 }
-
-.content {
-    margin: 40px 0;
-    padding-left: 40px;
-}
-
-/* .button-container button {
+.button-container button {
     padding: 10px 20px;
     background-color: #cf3d3c;
     border: none;
@@ -19,7 +13,11 @@
     font-size: 20px;
     border-radius: 10px;
     margin-bottom: 40px;
-} */
+}
+.content {
+    margin: 40px 0;
+    padding-left: 40px;
+}
 
 .content-table{
     border-collapse:collapse;
@@ -56,16 +54,14 @@
 
 .content-table tbody tr:last-of-type{
     border-bottom:2px solid #cf3d3c;
-}  
+}
 
-form button {
-    width: 20%; /* Set the input width to 100% to occupy the container */
-    max-width: 200px; /* Limit the input width to a maximum value */
+form input {
+    padding: 6px 10px;
     cursor: pointer;
     background-color: #cf3d3c;
-    color: white;
     border: none;
-    letter-spacing: 2px;
-    font-weight: bold;
-    margin-bottom: 20px;
-  }
+    color: white;
+    border-radius: 6px;
+}
+

@@ -60,7 +60,7 @@
                 }
             ?>
 
-            <h2>Donated Blood List</h2>
+           
             <table class='content-table'>
                 <thead>
                     <tr>
@@ -79,7 +79,7 @@
                             <td>
                                 <form method="POST" action="donate.php">
                                     <input type="hidden" name="request_id" value="<?php echo $donation['id']; ?>">
-                                    <button type="submit" value="Donate">Donate1</button>
+                                    <input type="submit" value="Donate">
                                 </form>
                             </td>
                         </tr>

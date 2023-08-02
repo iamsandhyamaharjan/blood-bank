@@ -48,7 +48,7 @@ try {
                     <td>
                         <form method="POST" action="donate.php">
                             <input type="hidden" name="request_id" value="<?php echo $donation['id']; ?>">
-                            <button type="submit"  value="Donate">Donate1</button>
+                            <input type="button" id="hi" value="Donate"></input>
                         </form>
                     </td>
                 </tr>

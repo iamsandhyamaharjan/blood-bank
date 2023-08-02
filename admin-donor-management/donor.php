@@ -7,6 +7,7 @@
 
         <link rel="stylesheet" type="text/css" href="../admin/admin-home.css">
         <script src="../admin/admin-home.js"></script>
+        <script src="donor.js"></script>
 
         <link rel="stylesheet" href="donor.css">
 

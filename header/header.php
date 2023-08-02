@@ -2,10 +2,13 @@
 session_start();
 include('../connect.php');
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+   
     if (isset($_POST['submit'])) {
         $username = $_POST['username'];
         $Password = $_POST['Password'];
-
+        $errormsg1="";
+        $errormsg2="";
+      
         // Prepare the query using parameterized statements to avoid SQL injection
         $q = $db->prepare("SELECT * FROM admin WHERE uname=:username AND pass=:Password");
         $q->bindParam(':username', $username);
@@ -22,6 +25,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         } else {
             echo "<script>alert('Wrong user');</script>";
         }
+    
     } elseif (isset($_POST['signup'])) {
         // Get form data
         $name = $_POST['name'];
@@ -99,7 +103,7 @@ function saveRecipientData($name, $address, $age, $contact, $bloodgroup, $Passwo
         $q->bindParam(':Password', $Password);
         $q->execute();
 
-        echo "Recipient data saved successfully.";
+        // echo "Recipient data saved successfully.";
     } catch (PDOException $e) {
         echo "Error: " . $e->getMessage();
     }
@@ -119,7 +123,7 @@ function saveDonorData($name, $address, $age, $contact, $bloodgroup, $Password)
         $q->bindParam(':Password', $Password);
         $q->execute();
 
-        echo "Donor data saved successfully.";
+        // echo "Donor data saved successfully.";
     } catch (PDOException $e) {
         echo "Error: " . $e->getMessage();
     }
@@ -146,7 +150,10 @@ $isRecipientLoggedIn = isset($_SESSION['recipient']);
         <div class="logo">
             <img src="https://assets.rumsan.com/esatya/hlb-navbar-logo.png" alt="Logo">
         </div>
-        <nav>
+        <nav><?php
+        $errormsg1="";
+        $errormsg2="";
+        ?>
             <?php if ($isRecipientLoggedIn): ?>
                 <a href="#"> Home</a>
                 <a href="../profile/profile.php">Profile</a>
@@ -184,13 +191,14 @@ $isRecipientLoggedIn = isset($_SESSION['recipient']);
     <div id="modal" class="modal">
         <div class="modal-content">
             <span class="close" onclick="closeModal()">&times;</span>
-            <form action="" method="post">
+            <form action="" method="post" onsubmit=" return validateAdminLoginForm()">
                 <label for="username"></label>
                 <input type="text" id="username" name="username" placeholder="Username">
+                <div id="error-msg-1" style="color: red;"></div>
                 <br>
                 <label for="Password"></label>
                 <input type="password" id="Password" name="Password" placeholder="Password">
-                <br>
+                <br><div id="error-msg-2" style="color: red;"></div>
                 <input type="submit" name="submit" value="Login">
             </form>
         </div>
@@ -200,25 +208,25 @@ $isRecipientLoggedIn = isset($_SESSION['recipient']);
         <div class="smodal-content">
             <span class="close" onclick="closeModal()">&times;</span>
 
-            <form action="#" method="post" class="register">
+        <form action="#" method="post" class="register" onsubmit="return validateSignUpForm()">
                 <label for="name">Name:</label>
                 <input type="text" id="name" name="name" placeholder="Full Name">
-                <br>
+                <br><div id="error-msg-5" style="color: red;"></div>
                 <label for="address">Address:</label>
                 <input type="text" id="address" name="address" placeholder="Full Address">
-                <br>
+                <br><div id="error-msg-6" style="color: red;"></div>
                 <label for="age">Age:</label>
                 <input type="number" id="age" name="age" placeholder="Age">
-                <br>
+                <br><div id="error-msg-7" style="color: red;"></div>
                 <label for="contact">Contact:</label>
                 <input type="tel" id="contact" name="contact" placeholder="Contact Number">
-                <br>
+                <br><div id="error-msg-8" style="color: red;"></div>
                 <label for="bloodgroup">Blood Group:</label>
                 <input type="text" id="bloodgroup" name="bloodgroup" placeholder="Blood Group">
-                <br>
+                <br><div id="error-msg-9" style="color: red;"></div>
                 <label for="Password">Password:</label>
                 <input type="password"  name="Password" placeholder="Password">
-                <br>
+                <br><div id="error-msg-10" style="color: red;"></div>
                 <label for="role">Role:</label>
                 <select id="role" name="role">
                     <option value="donor">Donor</option>
@@ -234,13 +242,15 @@ $isRecipientLoggedIn = isset($_SESSION['recipient']);
     <div id="loginmodal" class="loginmodal">
         <div class="loginmodal-content">
             <span class="close" onclick="closeModal()">&times;</span>
-            <form action="" method="post">
+            <form action="" method="post" onsubmit="return validateLoginForm()">
                 <!-- Your form fields here -->
                 <label for="username"></label>
                 <input type="text" id="username" name="username" placeholder="Username">
-                <br>
+                <div id="error-msg-3" style="color: red;"></div>
+                <br><br>
                 <label for="Password"></label>
                 <input  id="Password" name="Password" placeholder="Password">
+                <div id="error-msg-4" style="color: red;"></div>
                 <div class="role">
                     <label for="role">Role:</label>&nbsp;&nbsp;
                     <select id="role" name="role">

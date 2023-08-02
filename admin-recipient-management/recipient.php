@@ -8,6 +8,7 @@
 
         <link rel="stylesheet" type="text/css" href="../admin/admin-home.css">
         <script src="../admin/admin-home.js"></script>
+        <script src="recipient.js"></script>
 
         <link rel="stylesheet" href="recipient.css">
 
@@ -87,7 +88,7 @@
                         $q->bindParam(':id', $recipientId);
                         $q->execute();
                     
-                        echo "Recipient deleted successfully.";
+                        // echo "Recipient deleted successfully.";
                     } catch (PDOException $e) {
                         echo "Error: " . $e->getMessage();
                     }
