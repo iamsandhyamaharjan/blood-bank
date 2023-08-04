@@ -10,6 +10,8 @@
 <link rel="stylesheet" type="text/css" href="../footer copy/footer.css">
 <link rel="stylesheet" type="text/css" href="blood-request-list.css">
 <script src="../footer/footer.js"></script>
+<script src="blood-request-list.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <body>
 
 <?php
@@ -48,12 +50,19 @@ try {
                     <td><?php echo $request['Name']; ?></td>
                     <td><?php echo $request['BloodGroup']; ?></td>
                     <td><?php echo $request['Contact']; ?></td>
+                    
                     <td>
-                        <form method="POST" action="donate.php">
-                            <input type="hidden" name="request_id" value="<?php echo $request['id']; ?>">
-                            <button type="submit" value="Donate">Donate</button>
-                        </form>
-                    </td>
+                    <?php if (!$request['status']) : ?>
+        <button type="submit" onclick="donate(this, <?php echo $request['id']; ?>)">Donate</button>
+        <?php else : ?>
+    <?php if ($request['status'] == 'Approved') : ?>
+        <button type="submit">Approved</button>
+    <?php else : ?>
+        <button type="submit" onclick="donate()">Donated</button>
+    <?php endif; ?>
+    <?php endif; ?>
+
+    </td>
                 </tr>
             <?php endforeach; ?>
         </tbody>

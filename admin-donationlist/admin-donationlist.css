@@ -56,7 +56,15 @@
     border-bottom:2px solid #cf3d3c;
 }
 
-form input {
+form button {
+    padding: 6px 10px;
+    cursor: pointer;
+    background-color: #cf3d3c;
+    border: none;
+    color: white;
+    border-radius: 6px;
+}
+button {
     padding: 6px 10px;
     cursor: pointer;
     background-color: #cf3d3c;

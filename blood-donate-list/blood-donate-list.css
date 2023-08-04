@@ -4,24 +4,15 @@
     padding: 0;
     box-sizing: border-box;
 }
-#hi{
-    padding: 10px 20px;
-    background-color: #cf3d3c;
-    border: none;
-    color: white;
-    cursor: pointer;
-    font-size: 20px;
-    border-radius: 10px;
-    /* margin-bottom: 40px; */
-}
-.content {
-    margin: 40px 0;
+
+/* .content {
+    margin: 40px 40px;
     padding-left: 40px;
-}
+} */
 
 .content-table{
     border-collapse:collapse;
-    margin:25px 0;
+    margin:25px 40px;
     font-size:0.9em;
     min-width:400px;
     border-radius:5px 5px 0 0 ;
@@ -56,12 +47,13 @@
     border-bottom:2px solid #cf3d3c;
 }
 
-form input {
+
+
+  .content-table button {
     padding: 6px 10px;
     cursor: pointer;
     background-color: #cf3d3c;
     border: none;
     color: white;
     border-radius: 6px;
-}
-
+}  

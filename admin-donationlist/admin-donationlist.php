@@ -78,8 +78,9 @@
                             <td><?php echo $donation['Contact']; ?></td>
                             <td>
                                 <form method="POST" action="donate.php">
-                                    <input type="hidden" name="request_id" value="<?php echo $donation['id']; ?>">
-                                    <input type="submit" value="Donate">
+                                <a href="view.php?id=<?php echo $donation['id']; ?>">
+                        <button type="button">View</button>
+                    </a>
                                 </form>
                             </td>
                         </tr>

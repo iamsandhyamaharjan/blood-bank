@@ -24,6 +24,8 @@ try {
 <link rel="stylesheet" type="text/css" href="../footer copy/footer.css">
 <link rel="stylesheet" type="text/css" href="profile.css">
 <script src="../footer/footer.js"></script>
+<script src="blood-donate-list.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <body>
  
     <title>Donated Blood</title>
@@ -46,11 +48,16 @@ try {
                     <td><?php echo $donation['BloodGroup']; ?></td>
                     <td><?php echo $donation['Contact']; ?></td>
                     <td>
-                        <form method="POST" action="donate.php">
-                            <input type="hidden" name="request_id" value="<?php echo $donation['id']; ?>">
-                            <input type="button" id="hi" value="Donate"></input>
-                        </form>
-                    </td>
+                    <?php if (!$donation['status']) : ?>
+    <button type="submit" onclick="donate(this, <?php echo $donation['id']; ?>)">Receive</button>
+<?php else : ?>
+    <?php if ($donation['status'] == 'Approved') : ?>
+        <button type="submit">Approved</button>
+    <?php else : ?>
+        <button type="submit" onclick="donate()">Requested to receive</button>
+    <?php endif; ?>
+<?php endif; ?>
+    </td>
                 </tr>
             <?php endforeach; ?>
         </tbody>

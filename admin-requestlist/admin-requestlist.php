@@ -72,9 +72,10 @@
                             <td><?php echo $request['BloodGroup']; ?></td>
                             <td><?php echo $request['Contact']; ?></td>
                             <td>
-                                <form method="POST" action="donate.php">
-                                    <input type="hidden" name="request_id" value="<?php echo $request['id']; ?>">
-                                    <input type="submit" value="Donate">
+                            <form method="POST" action="donate.php">
+                                <a href="view.php?id=<?php echo $request['id']; ?>">
+                        <button type="button">View</button>
+                    </a>
                                 </form>
                             </td>
                         </tr>
