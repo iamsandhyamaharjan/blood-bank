@@ -56,7 +56,7 @@ if (isset($_SESSION['admin'])) {
     $age = $profile['Age'];
     $contact = $profile['Contact'];
     $bloodgroup = $profile['BloodGroup'];
-
+ 
 } else {
     // Redirect the user to the login page if they are not logged in
     // header("Location: login.php");
@@ -76,8 +76,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         // Update the profile data in the database based on the user type
         if (isset($_SESSION['donor'])) {
             $updateQuery = $db->prepare("UPDATE donors SET Name = :name, Address = :address, Age = :age, Contact = :contact, BloodGroup = :bloodgroup WHERE id=:id"  );
+            $_SESSION['donor']= $newName;
         } elseif (isset($_SESSION['recipient'])) {
             $updateQuery = $db->prepare("UPDATE recipient SET Name = :name, Address = :address, Age = :age, Contact = :contact, BloodGroup = :bloodgroup WHERE id=:id");
+            $_SESSION['recipient']= $newName;
         } else {
             $updateQuery = $db->prepare("UPDATE admin SET name = :name, address = :address, age = :age, contact = :contact WHERE id=:id");
         }

@@ -1,4 +1,11 @@
 <?php
+$cookieLifetime = 86400 * 7; // 7 days in seconds
+$cookiePath = '/';
+$cookieDomain = 'yourdomain.com'; // Replace with your actual domain
+$cookieSecure = false; // Set to true if you're using HTTPS
+
+session_set_cookie_params($cookieLifetime, $cookiePath, $cookieDomain, $cookieSecure);
+
 session_start();
 include('../connect.php');
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -158,12 +165,12 @@ $isRecipientLoggedIn = isset($_SESSION['recipient']);
                 <a href="#"> Home</a>
                 <a href="../profile/profile.php">Profile</a>
                 <a href="../blood-request/blood-request.php">Requests Blood</a>
-                <a href="../blood-donate-list/blood-donate-list.php">Blood Donation</a>
-               
+                <!-- <a href="../blood-donate-list/blood-donate-list.php">Blood Donation</a>
+                -->
             <?php elseif ($isDonorLoggedIn): ?>
                 <a href="#"> Home</a>
                 <a href="../profile/profile.php">Profile</a>
-                <a href="../blood-donate/blood-donate.php">Donate Blood</a>
+                <!-- <a href="../blood-donate/blood-donate.php">Donate Blood</a> -->
                 <a href="../blood-request-list/blood-request-list.php">Blood Requests</a>
                 
             <?php else: ?>

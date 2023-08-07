@@ -73,7 +73,7 @@ if (isset($_GET['id'])) {
                     echo "Status: Approved";
                 } 
                 else {
-                    echo "Status: No Recepient Found";
+                    echo "Status: No Donors Found Yet";
                 }    
         } else {
             echo "request not found.";
