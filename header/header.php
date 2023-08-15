@@ -175,7 +175,7 @@ $isRecipientLoggedIn = isset($_SESSION['recipient']);
                 
             <?php else: ?>
                 <a href="#">Home</a>
-                <a href="#">About Us</a>
+                <a href="#about-section">About Us</a>
 
             <?php endif; ?>
         </nav>
@@ -187,6 +187,7 @@ $isRecipientLoggedIn = isset($_SESSION['recipient']);
                 <div class="dropdown">
                     <a href="#" onclick="toggleDropdown()">User</a>
                     <div id="dropdown-content" class="dropdown-content">
+                    <span class="close" onclick="closeModal()">&times;</span>
                         <a href="#" style="color: black;" onclick="openSignModal()">Sign Up</a>
                         <a href="#" style="color: black;" onclick="openLoginModal()">Login</a>
                     </div>
@@ -196,9 +197,12 @@ $isRecipientLoggedIn = isset($_SESSION['recipient']);
     </header>
 
     <div id="modal" class="modal">
+   
         <div class="modal-content">
             <span class="close" onclick="closeModal()">&times;</span>
+           
             <form action="" method="post" onsubmit=" return validateAdminLoginForm()">
+            <h2>Login Form </h2>
                 <label for="username"></label>
                 <input type="text" id="username" name="username" placeholder="Username">
                 <div id="error-msg-1" style="color: red;"></div>
@@ -216,6 +220,7 @@ $isRecipientLoggedIn = isset($_SESSION['recipient']);
             <span class="close" onclick="closeModal()">&times;</span>
 
         <form action="#" method="post" class="register" onsubmit="return validateSignUpForm()">
+        <h2>SignUp Form </h2>
                 <label for="name">Name:</label>
                 <input type="text" id="name" name="name" placeholder="Full Name">
                 <br><div id="error-msg-5" style="color: red;"></div>
@@ -251,6 +256,7 @@ $isRecipientLoggedIn = isset($_SESSION['recipient']);
             <span class="close" onclick="closeModal()">&times;</span>
             <form action="" method="post" onsubmit="return validateLoginForm()">
                 <!-- Your form fields here -->
+                <h2>Login Form </h2>
                 <label for="username"></label>
                 <input type="text" id="username" name="username" placeholder="Username">
                 <div id="error-msg-3" style="color: red;"></div>

@@ -33,7 +33,7 @@
             <a href="../admin-recipient-management/recipient.php"><i class="fas fa-users"></i>Recipient Management</a>
             <a href="../admin-donationlist/admin-donationlist.php"><i class="fas fa-list-alt"></i>Donation Lists</a>
             <a href="../admin-requestlist/admin-requestlist.php"><i class="fas fa-list-alt"></i>Request List</a>
-            <a href="admin-profile.php"><i class="fas fa-cog"></i>Profile</a>
+            <a href="../admin/admin-profile.php"><i class="fas fa-cog"></i>Profile</a>
         </aside>
 
         <div class="content">

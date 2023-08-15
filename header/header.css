@@ -201,4 +201,5 @@ select {
   font-size: 28px;
   font-weight: bold;
   cursor: pointer;
+  margin: 20px;
 }

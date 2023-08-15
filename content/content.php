@@ -19,9 +19,9 @@
   ?>
 <div style="position: relative;">
     <img style="" src="https://assets.rumsan.com/esatya/hlb-banner.jpg" alt="Full Width Image">
-    <h1>Unleash the Hero Within: </br>
+    <!-- <h1>Unleash the Hero Within: </br>
         Donate Blood, Inspire Hope, </br>and Be the Lifesaver Someone Desperately Needs. </br>
-        Donate Blood, Save Lives!</h1>
+        Donate Blood, Save Lives!</h1> -->
 </div>
 
  
@@ -29,7 +29,7 @@
  
 
 
-<div class="wrapper">
+<div id ="about-section" class="wrapper">
     <div class="content">
 <h2>Why LifeSaver?</h2>
     <p>

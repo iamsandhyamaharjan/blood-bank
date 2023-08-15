@@ -34,10 +34,9 @@
             <a href="../admin/admin-home.php"><i class="fas fa-home"></i>Dashboard</a>
             <a href="../admin-donor-management/donor.php"><i class="fas fa-users"></i>Donor Management</a>
             <a href="../admin-recipient-management/recipient.php"><i class="fas fa-users"></i>Recipient Management</a>
-            <a href="../admin-requestlist/admin-requestlist.php"><i class="fas fa-list-alt"></i>Donation Lists</a>
+          <a href="../admin-donationlist/admin-donationlist.php"><i class="fas fa-list-alt"></i>Donation Lists</a>
             <a href="../admin-requestlist/admin-requestlist.php"><i class="fas fa-list-alt"></i>Request List</a>
-            <a href="#"><i class="fas fa-chart-bar"></i>Reports</a>
-            <a href="#"><i class="fas fa-cog"></i>Settings</a>
+            <a href="../admin/admin-profile.php"><i class="fas fa-cog"></i>Profile</a>
         </aside>
 
         <div class="content">
@@ -59,22 +58,36 @@ if (isset($_GET['id'])) {
         $request = $stmt->fetch(PDO::FETCH_ASSOC);
 
         if ($request) {
+            echo "<h2>Request Details</h2><br>";
+            echo '<table class="data-table">';
+            echo '<tr>';
+            echo '<th>Name</th>';
+            echo '<th>Blood Type</th>';
+            echo '<th>Contact</th>';
+            echo '<th>Status</th>';
+            echo '</tr>';
+            echo '<tr>';
             // Display the request details
-            echo "<h2>request Details</h2>";
-            echo "Name: " . $request['Name'] . "<br>";
-            echo "Blood Type: " . $request['BloodGroup'] . "<br>";
-            echo "Contact: " . $request['Contact'] . "<br>";
+           
+            echo "<td> " . $request['Name'] . "</td>";
+            echo "<td> " . $request['BloodGroup'] . "</td>";
+            echo "<td> " . $request['Contact'] . "</td>";
             // ... other details you want to display
             if ($request['status'] == 'Donated') {
-                    echo "Status: Requested";
-                    echo "<button type='button' onclick='approveDonation($requestId)'>Approve</button>";
+                    echo "<td> Requested";
+                    echo "<button type='button' onclick='approveDonation($requestId)'>Approve</button></td>";
                 } 
                 else if($request['status'] == 'Approved') {
-                    echo "Status: Approved";
+                    echo "<td> <button type='button' class='button-approve'>Approved</button></td>";
                 } 
                 else {
-                    echo "Status: No Donors Found Yet";
-                }    
+                    echo "<td> No Donors Found Yet</td>";
+                }  
+               
+                echo '</tr>';
+            
+            
+            echo '</table>'; 
         } else {
             echo "request not found.";
         }

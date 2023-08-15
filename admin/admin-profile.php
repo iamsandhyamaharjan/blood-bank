@@ -16,6 +16,7 @@
 
         <!-- link to donationlist css --> 
         <link rel="stylesheet" type="text/css" href="admin-donationlist.css">
+        <link rel="stylesheet" type="text/css" href="../profile/profile.css">
 
         <!-- link to font awesome -->
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
@@ -27,9 +28,21 @@
 
     <?php
         include '../admin/admin-header.php';
-        
+        include('../connect.php');
+        session_start();
+        // var_dump($_SESSION);    
 if (isset($_SESSION['admin'])) {
     $username = $_SESSION['admin'];
+    error_log($username) ;
+    $query = $db->prepare("SELECT * FROM admin WHERE uname = :username");
+    $query->bindParam(':username', $username);
+    $query->execute();
+    $profile = $query->fetch(PDO::FETCH_ASSOC);
+
+    // Store the profile details in variables
+    $name = $profile['uname'];
+    $pass = $profile['pass'];
+    $id =$profile['id'];
 
     // Retrieve additional profile details from the database
     // ...
@@ -44,20 +57,20 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
       
               // Update the profile data in the database based on the user type
               if (isset($_SESSION['admin'])) {
-                  $updateQuery = $db->prepare("UPDATE admin SET Name = :name, Password = :password WHERE id=:id"  );
-                  $_SESSION['donor']= $newName;
+                  $updateQuery = $db->prepare("UPDATE admin SET uname = :newName, pass = :newPassword WHERE id=:id"  );
+                  $_SESSION['admin']= $newName;
                } else {
-                  $updateQuery = $db->prepare("UPDATE admin SET name = :name, address = :address, age = :age, contact = :contact WHERE id=:id");
+                 
               }
       
-              $updateQuery->bindParam(':name', $newName);
-              $updateQuery->bindParam(':password', $newPassword);
+              $updateQuery->bindParam(':newName', $newName);
+              $updateQuery->bindParam(':newPassword', $newPassword);
               $updateQuery->bindParam(':id', $id);
               $updateQuery->execute();
       
               // Redirect the user back to the profile page
-              // header("Location: profile.php");
-              exit();
+              header("Location: admin-profile.php");
+              
           }
       }
     ?>
@@ -73,18 +86,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         </aside>
 
         <div class="content">
-    <h1>Welcome, </h1>
-<h2>Profile Information</h2>
-<form action="profile.php" method="post">
+        <h1 class="welcome-message">Welcome, <?php echo $name; ?></h1>
+<h2 class="profile-heading">Profile Information</h2>
+<form action="admin-profile.php" method="post">
     <label for="name">Name:</label>
     <input type="text" id="name" name="name" value="<?php echo $name; ?>">
     <br>
     <label for="address">Password:</label>
-    <input type="text" id="address" name="address" value="<?php echo $address; ?>">
+    <input type="text" id="password" name="password" value="<?php echo $pass; ?>">
    
     <br>
     <!-- Add more fields as necessary for the profile editing form -->
-    <input type="submit" name="submit1" value="Update">
+    <input style="background-color: #cf3d3c; color: white;" id="admin-profile" type="button" name="submit1" value="Update">
 </form>
 
     </div>

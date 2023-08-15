@@ -60,21 +60,35 @@ if (isset($_GET['id'])) {
 
         if ($donation) {
             // Display the donation details
-            echo "<h2>Donation Details</h2>";
-            echo "Name: " . $donation['Name'] . "<br>";
-            echo "Blood Type: " . $donation['BloodGroup'] . "<br>";
-            echo "Contact: " . $donation['Contact'] . "<br>";
+
+            echo "<h2>Donation Details</h2><br>";
+            echo '<table class="data-table">';
+            echo '<tr>';
+            echo '<th>Name</th>';
+            echo '<th>Blood Type</th>';
+            echo '<th>Contact</th>';
+            echo '<th>Status</th>';
+            echo '</tr>';
+            echo '<tr>';
+            echo "<td> " . $donation['Name'] . "</td>";
+            echo "<td> " . $donation['BloodGroup'] . "</td>";
+            echo "<td> " . $donation['Contact'] . "</td>";
             // ... other details you want to display
             if ($donation['status'] == 'Donated') {
-                    echo "Status: Requested";
-                    echo "<button type='button' onclick='approveDonation($donationId)'>Approve</button>";
+                    echo "<td> Requested";
+                    echo "<button type='button' onclick='approveDonation($donationId)'>Approve</button></td>";
                 } 
                 else if($donation['status'] == 'Approved') {
-                    echo "Status: Approved";
+                    echo "<td><button class='button-approve'> Approved</button></td>";
                 } 
                 else {
-                    echo "Status: No Recepient Found";
-                }    
+                    echo "<td> No Donors Found Yet</td>";
+                }  
+               
+                echo '</tr>';
+            
+            
+            echo '</table>'; 
             
         } else {
             echo "Donation not found.";

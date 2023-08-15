@@ -72,4 +72,22 @@ button {
     color: white;
     border-radius: 6px;
 }
+.button-approve{
+    background-color:green;
+}
+.data-table {
+    width: 80%;
+    border-collapse: collapse;
+    border: 1px solid #ddd;
+}
+
+.data-table th, .data-table td {
+    padding: 8px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+.data-table th {
+    background-color: #cf3d3c;
+}
 

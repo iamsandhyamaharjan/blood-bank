@@ -25,4 +25,17 @@ form {
           font-weight: bold;
           margin-bottom: 20px;
         }
-      
+        .welcome-message {
+          font-size: 24px;
+          color: #333;
+          margin: 20px;
+      }
+  
+      /* Style for the profile information headings */
+      .profile-heading {
+          font-size: 18px;
+          color: #333;
+          margin-top: 20px;
+          margin-bottom: 10px;
+          margin-left: 20px;
+      }
