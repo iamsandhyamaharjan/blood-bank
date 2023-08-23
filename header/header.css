@@ -57,11 +57,12 @@ nav a, .user a {
 .dropdown-content {
   position: absolute;
   background-color: #f9f9f9;
-  min-width: 120px;
+  min-width: 125px;
   box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
   z-index: 1;
   display: none;
   border-radius: 20px;
+  /* padding: 10px; */
 }
 
 .dropdown:hover .dropdown-content {

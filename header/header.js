@@ -74,8 +74,8 @@ function validateAdminLoginForm() {
  return true;
 }
 function validateLoginForm() {
-  var username = document.getElementsByName('username')[0].value.trim();
-  var password = document.getElementsByName('Password')[0].value.trim();
+  var username = document.getElementById('username1').value.trim();
+  var password = document.getElementById('Password1').value.trim();
   var errormsg3 = "";
   var errormsg4 = "";
 
@@ -89,18 +89,23 @@ function validateLoginForm() {
   document.getElementById('error-msg-4').innerHTML = errormsg4;
 
   // If either of the error messages is not empty, return false to prevent form submission
-  return !(errormsg3 || errormsg4);
+  if (errormsg3 || errormsg4) {
+    return false;
+  }
+
+  // If everything is valid, return true to submit the form
+  return true;
 }
 
 
 
 function validateSignUpForm() {
-  var username = document.getElementsByName('name')[0].value.trim();
-  var address = document.getElementsByName('address')[0].value.trim();
-  var age = document.getElementsByName('age')[0].value.trim();
-  var contact = document.getElementsByName('contact')[0].value.trim();
-  var bloodGroup = document.getElementsByName('bloodgroup')[0].value.trim();
-  var password = document.getElementsByName('Password')[0].value.trim();
+  var username = document.getElementById('names').value.trim();
+  var address = document.getElementById('addresss').value.trim();
+  var age = document.getElementById('ages').value.trim();
+  var contact = document.getElementById('contacts').value.trim();
+  var bloodGroup = document.getElementById('bloodgroups').value.trim();
+  var password = document.getElementById('Passwords').value.trim();
   var errormsg5 = "";
   var errormsg6 = "";
   var errormsg7 = "";
@@ -109,22 +114,22 @@ function validateSignUpForm() {
   var errormsg10 = "";
 
   if (!username) {
-      errormsg5 = "Please enter name";
+    errormsg5 = "Please enter name";
   }
   if (!address) {
-      errormsg6 = "Please enter address";
+    errormsg6 = "Please enter address";
   }
   if (!age) {
-      errormsg7 = "Please enter age";
+    errormsg7 = "Please enter age";
   }
   if (!contact) {
-      errormsg8 = "Please enter contact";
+    errormsg8 = "Please enter contact";
   }
   if (!bloodGroup) {
-      errormsg9 = "Please enter your blood group";
+    errormsg9 = "Please enter your blood group";
   }
   if (!password) {
-      errormsg10 = "Please enter password";
+    errormsg10 = "Please enter password";
   }
 
   document.getElementById('error-msg-5').innerHTML = errormsg5;
@@ -135,8 +140,12 @@ function validateSignUpForm() {
   document.getElementById('error-msg-10').innerHTML = errormsg10;
 
   // If any error messages are present, return false to prevent form submission
-  return !(errormsg5 || errormsg6 || errormsg7 || errormsg8 || errormsg9 || errormsg10);
+  if (errormsg5 || errormsg6 || errormsg7 || errormsg8 || errormsg9 || errormsg10) {
+    return false;
+  }
+  return true;
 }
+
 document.addEventListener("DOMContentLoaded", function() {
   // Smooth scroll when clicking on "About Us" link
   var aboutUsLink = document.querySelector("a[href='#about-section']");

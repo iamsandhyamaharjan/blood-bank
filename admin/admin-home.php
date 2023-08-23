@@ -36,7 +36,7 @@
 
 
         <div class="content">
-            <p>This is Content!</p>
+          
             <!-- rest of your content goes here -->
         </div>
     </main>

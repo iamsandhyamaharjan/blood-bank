@@ -7,6 +7,7 @@
 
         <!-- link to admin-home js -->
         <script src="../admin/admin-home.js"></script>
+        <script src="admin-profile.js"></script>
         
         <!-- link to admin-home css -->
         <link rel="stylesheet" type="text/css" href="../admin/admin-home.css">
@@ -49,30 +50,30 @@ if (isset($_SESSION['admin'])) {
 
 }
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-          if (isset($_POST['submit1'])) {
-              // Get the updated values from the form
-              $newName = $_POST['name'];
-              $newPassword = $_POST['password'];
-             
-      
-              // Update the profile data in the database based on the user type
-              if (isset($_SESSION['admin'])) {
-                  $updateQuery = $db->prepare("UPDATE admin SET uname = :newName, pass = :newPassword WHERE id=:id"  );
-                  $_SESSION['admin']= $newName;
-               } else {
-                 
-              }
-      
-              $updateQuery->bindParam(':newName', $newName);
-              $updateQuery->bindParam(':newPassword', $newPassword);
-              $updateQuery->bindParam(':id', $id);
-              $updateQuery->execute();
-      
-              // Redirect the user back to the profile page
-              header("Location: admin-profile.php");
-              
-          }
-      }
+    if (isset($_POST['submit1'])) {
+        // Get the updated values from the form
+        $newName = $_POST['name'];
+        $newPassword = $_POST['password']; // Corrected variable name to $_POST
+
+        // Update the profile data in the database based on the user type
+        if (isset($_SESSION['admin'])) {
+            $updateQuery = $db->prepare("UPDATE admin SET uname = :newName, pass = :newPassword WHERE id=:id");
+            $_SESSION['admin'] = $newName;
+        } else {
+            // Handle other user types if needed
+        }
+
+        $updateQuery->bindParam(':newName', $newName);
+        $updateQuery->bindParam(':newPassword', $newPassword);
+        $updateQuery->bindParam(':id', $id);
+        $updateQuery->execute();
+
+        // Redirect the user back to the profile page
+        header("Location: admin-profile.php");
+        exit();
+    }
+}
+
     ?>
 
     <main>
@@ -97,7 +98,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
    
     <br>
     <!-- Add more fields as necessary for the profile editing form -->
-    <input style="background-color: #cf3d3c; color: white;" id="admin-profile" type="button" name="submit1" value="Update">
+    <input style="background-color: #cf3d3c; color: white;" id="admin-profile" type="submit" name="submit1" value="Update">
 </form>
 
     </div>

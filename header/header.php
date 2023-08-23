@@ -1,21 +1,11 @@
 <?php
-$cookieLifetime = 86400 * 7; // 7 days in seconds
-$cookiePath = '/';
-$cookieDomain = 'yourdomain.com'; // Replace with your actual domain
-$cookieSecure = false; // Set to true if you're using HTTPS
-
-session_set_cookie_params($cookieLifetime, $cookiePath, $cookieDomain, $cookieSecure);
-
 session_start();
 include('../connect.php');
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-   
     if (isset($_POST['submit'])) {
         $username = $_POST['username'];
         $Password = $_POST['Password'];
-        $errormsg1="";
-        $errormsg2="";
-      
+
         // Prepare the query using parameterized statements to avoid SQL injection
         $q = $db->prepare("SELECT * FROM admin WHERE uname=:username AND pass=:Password");
         $q->bindParam(':username', $username);
@@ -32,7 +22,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         } else {
             echo "<script>alert('Wrong user');</script>";
         }
-    
     } elseif (isset($_POST['signup'])) {
         // Get form data
         $name = $_POST['name'];
@@ -95,6 +84,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         }
     }
 }
+
 
 function saveRecipientData($name, $address, $age, $contact, $bloodgroup, $Password)
 {
@@ -188,8 +178,9 @@ $isRecipientLoggedIn = isset($_SESSION['recipient']);
                     <a href="#" onclick="toggleDropdown()">User</a>
                     <div id="dropdown-content" class="dropdown-content">
                     <span class="close" onclick="closeModal()">&times;</span>
-                        <a href="#" style="color: black;" onclick="openSignModal()">Sign Up</a>
+                        <a href="#" style="color: black;" onclick="openSignModal()">Sign Up </a>
                         <a href="#" style="color: black;" onclick="openLoginModal()">Login</a>
+                        
                     </div>
                 </div>
             <?php endif; ?>
@@ -219,25 +210,27 @@ $isRecipientLoggedIn = isset($_SESSION['recipient']);
         <div class="smodal-content">
             <span class="close" onclick="closeModal()">&times;</span>
 
-        <form action="#" method="post" class="register" onsubmit="return validateSignUpForm()">
+        <form action="#" method="post" class="register" 
+        onsubmit="return validateSignUpForm()"
+        >
         <h2>SignUp Form </h2>
                 <label for="name">Name:</label>
-                <input type="text" id="name" name="name" placeholder="Full Name">
+                <input type="text" id="names" name="name" placeholder="Full Name">
                 <br><div id="error-msg-5" style="color: red;"></div>
                 <label for="address">Address:</label>
-                <input type="text" id="address" name="address" placeholder="Full Address">
+                <input type="text" id="addresss" name="address" placeholder="Full Address">
                 <br><div id="error-msg-6" style="color: red;"></div>
                 <label for="age">Age:</label>
-                <input type="number" id="age" name="age" placeholder="Age">
+                <input type="number" id="ages" name="age" placeholder="Age">
                 <br><div id="error-msg-7" style="color: red;"></div>
                 <label for="contact">Contact:</label>
-                <input type="tel" id="contact" name="contact" placeholder="Contact Number">
+                <input type="tel" id="contacts" name="contact" placeholder="Contact Number">
                 <br><div id="error-msg-8" style="color: red;"></div>
                 <label for="bloodgroup">Blood Group:</label>
-                <input type="text" id="bloodgroup" name="bloodgroup" placeholder="Blood Group">
+                <input type="text" id="bloodgroups" name="bloodgroup" placeholder="Blood Group">
                 <br><div id="error-msg-9" style="color: red;"></div>
                 <label for="Password">Password:</label>
-                <input type="password"  name="Password" placeholder="Password">
+                <input type="password" id="Passwords" name="Password" placeholder="Password">
                 <br><div id="error-msg-10" style="color: red;"></div>
                 <label for="role">Role:</label>
                 <select id="role" name="role">
@@ -245,7 +238,7 @@ $isRecipientLoggedIn = isset($_SESSION['recipient']);
                     <option value="recipient">Recipient</option>
                 </select>
                 <br>
-                <input type="submit" name="signup" value="Sign Up">
+                <input type="submit" name="signup" value="SignUp">
             </form>
         </div>
     </div>
@@ -258,11 +251,11 @@ $isRecipientLoggedIn = isset($_SESSION['recipient']);
                 <!-- Your form fields here -->
                 <h2>Login Form </h2>
                 <label for="username"></label>
-                <input type="text" id="username" name="username" placeholder="Username">
+                <input type="text" id="username1" name="username" placeholder="Username">
                 <div id="error-msg-3" style="color: red;"></div>
                 <br><br>
                 <label for="Password"></label>
-                <input  id="Password" name="Password" placeholder="Password">
+                <input  id="Password1" name="Password" placeholder="Password">
                 <div id="error-msg-4" style="color: red;"></div>
                 <div class="role">
                     <label for="role">Role:</label>&nbsp;&nbsp;
