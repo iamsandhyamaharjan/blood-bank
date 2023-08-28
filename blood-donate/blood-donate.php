@@ -21,10 +21,24 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $name = $_POST['name'];
     $bloodType = $_POST['bloodType'];
     $contact = $_POST['contact'];
+    if (isset($_SESSION['donor'])) {
+        $username = $_SESSION['donor'];}
+        echo $username;
+
 
     try {
         // Prepare and bind the SQL statement with placeholders
-        $q = $db->prepare("INSERT INTO donation(Name, BloodGroup, Contact) VALUES (:name, :bloodType, :contact)");
+        $recipientIdQuery = $db->prepare("SELECT id FROM donors WHERE name = :username");
+        $recipientIdQuery->bindParam(':username', $username);
+        $recipientIdQuery->execute();
+
+        // Fetch the RecipientID
+        $recipientIdResult = $recipientIdQuery->fetch();
+        $recipientId = $recipientIdResult['id'];
+
+
+        $q = $db->prepare("INSERT INTO donation(d_id,Name, BloodGroup, Contact) VALUES (:recipientId,:name, :bloodType, :contact)");
+        $q->bindParam(':recipientId', $recipientId);
         $q->bindParam(':name', $name);
         $q->bindParam(':bloodType', $bloodType);
         $q->bindParam(':contact', $contact);

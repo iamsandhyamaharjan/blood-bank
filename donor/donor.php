@@ -18,7 +18,7 @@
   ?>
 
   Welcome donor
-
+<div id="content"></div>
  <?php
   // Include file2.php
     include '../footer/footer.php';

@@ -15,7 +15,7 @@
         <link rel="stylesheet" type="text/css" href="../footer/footer.css">
 
         <!-- link to donationlist css --> 
-        <link rel="stylesheet" type="text/css" href="admin-donationlist.css">
+        <link rel="stylesheet" type="text/css" href="../admin-donationlist/admin-donationlist.css">
 
         <!-- link to font awesome -->
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
@@ -44,7 +44,7 @@
         <div class="content">
 
             <div class="button-container">
-                <button onclick="createDonor()">Donated Blood Lists</button>
+                <button onclick="createDonor()"> Blood Lists</button>
             </div>
 
             <?php
@@ -54,7 +54,7 @@
                 // Retrieve blood requests from the database
                 try {
                 // Assuming you have a valid PDO database connection ($db)
-                $query = $db->query("SELECT * FROM donation");
+                $query = $db->query("SELECT * FROM blood b inner join donors d where b.donorId = d.id");
                 $bloodDonations = $query->fetchAll(PDO::FETCH_ASSOC);
                 } catch (PDOException $e) {
                 echo "Error: " . $e->getMessage();
@@ -65,25 +65,19 @@
             <table class='content-table'>
                 <thead>
                     <tr>
-                        <th>Name</th>
+                        <th> Donor Name</th>
                         <th>Blood Type</th>
                         <th>Contact</th>
-                        <th>Action</th>
+                        <!-- <th>Action</th> -->
                     </tr>
                 </thead>
                 <tbody>
                     <?php foreach ($bloodDonations as $donation) : ?>
                         <tr>
                             <td><?php echo $donation['Name']; ?></td>
-                            <td><?php echo $donation['BloodGroup']; ?></td>
+                            <td><?php echo $donation['BloodType']; ?></td>
                             <td><?php echo $donation['Contact']; ?></td>
-                            <td>
-                                <form method="POST" action="donate.php">
-                                <a href="view.php?id=<?php echo $donation['id']; ?>">
-                        <button type="button">View</button>
-                    </a>
-                                </form>
-                            </td>
+                           
                         </tr>
                     <?php endforeach; ?>
                 </tbody>

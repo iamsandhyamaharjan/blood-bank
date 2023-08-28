@@ -33,7 +33,7 @@ try {
 <head>
     <title>Blood Requests</title>
 </head>
-<body>
+<body >
     <h2>Blood Requests</h2>
     <table class="content-table">
         <thead>
@@ -65,8 +65,16 @@ try {
     </td>
                 </tr>
             <?php endforeach; ?>
+
+
+
+
+
+
+            
         </tbody>
     </table>
+    <div  id="content"></div>
 </body>
 </html>
 

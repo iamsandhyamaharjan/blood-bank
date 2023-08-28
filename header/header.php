@@ -155,12 +155,16 @@ $isRecipientLoggedIn = isset($_SESSION['recipient']);
                 <a href="#"> Home</a>
                 <a href="../profile/profile.php">Profile</a>
                 <a href="../blood-request/blood-request.php">Requests Blood</a>
+                <a href="../blood-request/receipient-request.php">My Requests</a>
+                <a href="../blood-request/available-donor.php">Available Donors</a>
+                <a href="../blood-request/available-blood.php">Available Bloods</a>
                 <!-- <a href="../blood-donate-list/blood-donate-list.php">Blood Donation</a>
                 -->
             <?php elseif ($isDonorLoggedIn): ?>
                 <a href="#"> Home</a>
                 <a href="../profile/profile.php">Profile</a>
-                <!-- <a href="../blood-donate/blood-donate.php">Donate Blood</a> -->
+                <a href="../blood-donate/blood-donate.php">Donate Blood</a>
+                <a href="../blood-donate/donation.php">My Donation</a>
                 <a href="../blood-request-list/blood-request-list.php">Blood Requests</a>
                 
             <?php else: ?>

@@ -1,10 +1,14 @@
-
 /* CSS for the footer */
 body {
   margin: 0;
   padding: 0;
-  position: relative;
+  display: flex;
+  flex-direction: column;
   min-height: 100vh;
+}
+
+#content {
+  flex: 1; /* Allow content to take up remaining space */
 }
 
 footer {
@@ -13,7 +17,6 @@ footer {
   padding: 10px;
   position: sticky;
   left: 0;
-  bottom: 0;
   right: 0;
   display: flex;
   align-items: center;

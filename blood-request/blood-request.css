@@ -66,7 +66,33 @@
           border-radius: 6px; 
       } 
       .parent{
-          display: flex;
+          /* display: flex; */
           margin:60px;
-          justify-content: space-between;
+          width: 400px;
+          /* justify-content: space-between; */
       }
+      .search-container {
+        text-align: center;
+        margin: 20px 0;
+    }
+    
+    #searchInput {
+        padding: 8px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        margin-right: 5px;
+    }
+    
+    #searchButton {
+        padding: 8px 15px;
+        background-color: #cf3d3c;
+        color: white;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+    }
+    
+    #searchButton:hover {
+        background-color: #cf3d3c;
+    }
+    

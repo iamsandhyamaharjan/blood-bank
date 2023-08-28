@@ -76,27 +76,43 @@ try {
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 <body>
-    <div class="parent">
-       
-       
-    <form method="POST" action="receipient-request.php">
-    <h2 id="hi">Blood Request Form</h2>
-        <!-- Your form fields here -->
-        <label for="name">Name:</label>
-        <input type="text" id="name" name="name" required><br><br>
+<div class="child">
+<h2>Requested Blood <h2>
+<table class="content-table">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Blood Type</th>
+                <th>Contact</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php foreach ($bloodRequests as $request) : ?>
+                <tr>
+                    <td><?php echo $request['Name']; ?></td>
+                    <td><?php echo $request['BloodGroup']; ?></td>
+                    <td><?php echo $request['Contact']; ?></td>
+                    
+                    <td>
+                    <?php if (!$request['status']) : ?>
+        <button type="submit" onclick="donate(this, <?php echo $request['id']; ?>)">Requested</button>
+        <?php else : ?>
+    <?php if ($request['status'] == 'Approved') : ?>
+        <button type="submit">Found Donor</button>
+    <?php else : ?>
+        <button type="submit" onclick="donate()">Donated</button>
+    <?php endif; ?>
+    <?php endif; ?>
 
-        <label for="bloodType">Blood Type:</label>
-        <input type="text" id="bloodType" name="bloodType" required><br><br>
-
-        <label for="contact">Contact:</label>
-        <input type="text" id="contact" name="contact" required><br><br>
-
-        <button type="submit" value="Submit">Submit</button>
-    </form>
-      
+    </td>
+                </tr>
+            <?php endforeach; ?>
+        </tbody>
+    </table>
+        </div>
+        <div  id="content"></div>
        
-    </div>
- 
 </body>
 </html>
 

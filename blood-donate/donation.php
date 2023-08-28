@@ -14,13 +14,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     // Assuming you have a database connection named $db
     // Replace 'your_username_column' with the actual column name in your recipients table that stores the usernames
-    if (isset($_SESSION['recipient'])) {
-        $username = $_SESSION['recipient'];}
+    if (isset($_SESSION['donors'])) {
+        $username = $_SESSION['donors'];}
         echo $username;
 
     try {
         // Get the RecipientID from the database based on the username
-        $recipientIdQuery = $db->prepare("SELECT id FROM recipient WHERE name = :username");
+        $recipientIdQuery = $db->prepare("SELECT id FROM donors WHERE name = :username");
         $recipientIdQuery->bindParam(':username', $username);
         $recipientIdQuery->execute();
 
@@ -29,7 +29,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $recipientId = $recipientIdResult['id'];
 
         // Prepare and bind the SQL statement with placeholders
-        $q = $db->prepare("INSERT INTO request (r_id, Name, BloodGroup, Contact) VALUES (:recipientId, :name, :bloodType, :contact)");
+        $q = $db->prepare("INSERT INTO donation (r_id, Name, BloodGroup, Contact) VALUES (:recipientId, :name, :bloodType, :contact)");
         $q->bindParam(':recipientId', $recipientId);
         $q->bindParam(':name', $name);
         $q->bindParam(':bloodType', $bloodType);
@@ -48,8 +48,8 @@ try {
     // Assuming you have a valid PDO database connection ($db)
     $query = $db->query("
         SELECT r.* 
-        FROM request r 
-        INNER JOIN recipient re ON re.id = r.r_id
+        FROM donation r 
+        INNER JOIN donors re ON re.id = r.d_id
     ");
     $bloodRequests = $query->fetchAll(PDO::FETCH_ASSOC);
 } catch (PDOException $e) {
@@ -65,7 +65,7 @@ try {
 <html>
 <head>
     <title>Blood Request Form</title>
-    <link rel="stylesheet" type="text/css" href="blood-request.css">
+    <link rel="stylesheet" type="text/css" href="../blood-request/blood-request.css">
     <link rel="stylesheet" type="text/css" href="../header/header.css">
 
 <script src="../header/header.js"></script>
@@ -76,27 +76,42 @@ try {
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 <body>
-    <div class="parent">
-       
-       
-    <form method="POST" action="receipient-request.php">
-    <h2 id="hi">Blood Request Form</h2>
-        <!-- Your form fields here -->
-        <label for="name">Name:</label>
-        <input type="text" id="name" name="name" required><br><br>
+<div class="child">
+<h2>Requested Blood <h2>
+<table class="content-table">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Blood Type</th>
+                <th>Contact</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php foreach ($bloodRequests as $request) : ?>
+                <tr>
+                    <td><?php echo $request['Name']; ?></td>
+                    <td><?php echo $request['BloodGroup']; ?></td>
+                    <td><?php echo $request['Contact']; ?></td>
+                    
+                    <td>
+                    <?php if (!$request['status']) : ?>
+        <button type="submit" onclick="donate(this, <?php echo $request['id']; ?>)">Requested</button>
+        <?php else : ?>
+    <?php if ($request['status'] == 'Approved') : ?>
+        <button type="submit">Approved by Admin</button>
+    <?php else : ?>
+        <button type="submit" onclick="donate()">Donated</button>
+    <?php endif; ?>
+    <?php endif; ?>
 
-        <label for="bloodType">Blood Type:</label>
-        <input type="text" id="bloodType" name="bloodType" required><br><br>
-
-        <label for="contact">Contact:</label>
-        <input type="text" id="contact" name="contact" required><br><br>
-
-        <button type="submit" value="Submit">Submit</button>
-    </form>
-      
+    </td>
+                </tr>
+            <?php endforeach; ?>
+        </tbody>
+    </table>
+        </div>
        
-    </div>
- 
 </body>
 </html>
 

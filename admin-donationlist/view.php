@@ -82,7 +82,8 @@ if (isset($_GET['id'])) {
                     echo "<td><button class='button-approve'> Approved</button></td>";
                 } 
                 else {
-                    echo "<td> No Donors Found Yet</td>";
+                    echo "<td> Requested to donate";
+                    echo "<button type='button' onclick='approveDonation($donationId)'>Approve</button></td>";
                 }  
                
                 echo '</tr>';

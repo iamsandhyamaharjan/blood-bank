@@ -99,7 +99,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 }
 ?>
 
-<h1>Welcome, <?php echo $username; ?></h1>
+<!-- <h2>Welcome, <?php echo $username; ?></h2> -->
 <h2>Profile Information</h2>
 <form action="profile.php" method="post">
     <label for="name">Name:</label>
