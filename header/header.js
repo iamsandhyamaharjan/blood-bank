@@ -124,14 +124,17 @@ function validateSignUpForm() {
   }
   if (!contact) {
     errormsg8 = "Please enter contact";
+  } else if (!/^\d{10}$/.test(contact)) {
+    errormsg8 = "Phone number must be exactly 10 digits";
   }
   if (!bloodGroup) {
-    errormsg9 = "Please enter your blood group";
+    errormsg9 = "Please select your blood group";
   }
   if (!password) {
     errormsg10 = "Please enter password";
+  } else if (password.length <= 8) {
+    errormsg10 = "Password must be greater than 8 characters";
   }
-
   document.getElementById('error-msg-5').innerHTML = errormsg5;
   document.getElementById('error-msg-6').innerHTML = errormsg6;
   document.getElementById('error-msg-7').innerHTML = errormsg7;
@@ -145,6 +148,7 @@ function validateSignUpForm() {
   }
   return true;
 }
+
 
 document.addEventListener("DOMContentLoaded", function() {
   // Smooth scroll when clicking on "About Us" link

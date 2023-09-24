@@ -15,9 +15,25 @@
   <?php
   // Include file2.php
     include '../header/header.php';
-  ?>
 
-  Welcome donor
+    // var_dump($_SESSION);    
+if (isset($_SESSION['donor'])) {
+$username = $_SESSION['donor'];
+error_log($username) ;
+$query = $db->prepare("SELECT * FROM donors WHERE Name = :username");
+$query->bindParam(':username', $username);
+$query->execute();
+$profile = $query->fetch(PDO::FETCH_ASSOC);
+
+// Store the profile details in variables
+$name = $profile['Name'];
+
+// Retrieve additional profile details from the database
+// ...
+}
+  ?>
+<h1>  Welcome <?php echo $name ;?></h1>
+ 
 <div id="content"></div>
  <?php
   // Include file2.php

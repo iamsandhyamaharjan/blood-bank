@@ -230,8 +230,18 @@ $isRecipientLoggedIn = isset($_SESSION['recipient']);
                 <label for="contact">Contact:</label>
                 <input type="tel" id="contacts" name="contact" placeholder="Contact Number">
                 <br><div id="error-msg-8" style="color: red;"></div>
-                <label for="bloodgroup">Blood Group:</label>
-                <input type="text" id="bloodgroups" name="bloodgroup" placeholder="Blood Group">
+                <label for="bloodgroup">Blood Group:</label><br>
+<select id="bloodgroups" name="bloodgroup">
+    <option value="A+">A+</option>
+    <option value="A-">A-</option>
+    <option value="B+">B+</option>
+    <option value="B-">B-</option>
+    <option value="AB+">AB+</option>
+    <option value="AB-">AB-</option>
+    <option value="O+">O+</option>
+    <option value="O-">O-</option>
+</select>
+
                 <br><div id="error-msg-9" style="color: red;"></div>
                 <label for="Password">Password:</label>
                 <input type="password" id="Passwords" name="Password" placeholder="Password">

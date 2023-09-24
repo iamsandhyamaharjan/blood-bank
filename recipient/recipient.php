@@ -15,9 +15,23 @@
   <?php
     // Include file2.php
     include '../header/header.php';
-  ?>
+    if (isset($_SESSION['recipient'])) {
+      $username = $_SESSION['recipient'];
+      error_log($username) ;
+      $query = $db->prepare("SELECT * FROM recipient WHERE Name = :username");
+      $query->bindParam(':username', $username);
+      $query->execute();
+      $profile = $query->fetch(PDO::FETCH_ASSOC);
+      
+      // Store the profile details in variables
+      $name = $profile['Name'];
+      
+      // Retrieve additional profile details from the database
+      // ...
+      }
+        ?>
+      <h1>  Welcome <?php echo $name ;?></h1>
 
-  Welcome recipient
 <div  id="content"></div>
   <?php
     // Include file2.php

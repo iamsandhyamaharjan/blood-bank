@@ -85,8 +85,19 @@ try {
         <label for="name">Name:</label>
         <input type="text" id="name" name="name" required><br><br>
 
-        <label for="bloodType">Blood Type:</label>
-        <input type="text" id="bloodType" name="bloodType" required><br><br>
+        <label for="bloodgroup">Blood Group:</label><br>
+<select id="bloodgroups" name="bloodgroup">
+    <option value=""></option>
+    <option value="A+">A+</option>
+    <option value="A-">A-</option>
+    <option value="B+">B+</option>
+    <option value="B-">B-</option>
+    <option value="AB+">AB+</option>
+    <option value="AB-">AB-</option>
+    <option value="O+">O+</option>
+    <option value="O-">O-</option>
+</select>
+        <br><br>
 
         <label for="contact">Contact:</label>
         <input type="text" id="contact" name="contact" required><br><br>

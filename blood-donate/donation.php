@@ -5,58 +5,34 @@ include '../header/header.php';
 
 // Start the session to access session variables
 
-
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    // Get the form values
-    $name = $_POST['name'];
-    $bloodType = $_POST['bloodType'];
-    $contact = $_POST['contact'];
-
-    // Assuming you have a database connection named $db
-    // Replace 'your_username_column' with the actual column name in your recipients table that stores the usernames
-    if (isset($_SESSION['donors'])) {
-        $username = $_SESSION['donors'];}
-        echo $username;
+if (isset($_SESSION['donor'])) {
+    $username = $_SESSION['donor'];
 
     try {
-        // Get the RecipientID from the database based on the username
-        $recipientIdQuery = $db->prepare("SELECT id FROM donors WHERE name = :username");
-        $recipientIdQuery->bindParam(':username', $username);
-        $recipientIdQuery->execute();
+        // Assuming you have a valid PDO database connection ($db)
+        $query = $db->prepare("
+           SELECT * FROM donation d
+           INNER JOIN donors de ON d.d_id = de.id
+           WHERE de.name = :username
+        ");
 
-        // Fetch the RecipientID
-        $recipientIdResult = $recipientIdQuery->fetch();
-        $recipientId = $recipientIdResult['id'];
+        // Bind the parameter
+        $query->bindParam(':username', $username, PDO::PARAM_STR);
 
-        // Prepare and bind the SQL statement with placeholders
-        $q = $db->prepare("INSERT INTO donation (r_id, Name, BloodGroup, Contact) VALUES (:recipientId, :name, :bloodType, :contact)");
-        $q->bindParam(':recipientId', $recipientId);
-        $q->bindParam(':name', $name);
-        $q->bindParam(':bloodType', $bloodType);
-        $q->bindParam(':contact', $contact);
-        $q->execute();
+        // Execute the query
+        $query->execute();
 
-        echo "Blood request saved successfully.";
+        // Check if there are results
+        if ($query->rowCount() > 0) {
+            $bloodRequests = $query->fetchAll(PDO::FETCH_ASSOC);
+        } else {
+            // No results found
+            echo "You haven't donated yet.";
+        }
     } catch (PDOException $e) {
         echo "Error: " . $e->getMessage();
     }
 }
-
-
-
-try {
-    // Assuming you have a valid PDO database connection ($db)
-    $query = $db->query("
-        SELECT r.* 
-        FROM donation r 
-        INNER JOIN donors re ON re.id = r.d_id
-    ");
-    $bloodRequests = $query->fetchAll(PDO::FETCH_ASSOC);
-} catch (PDOException $e) {
-    echo "Error: " . $e->getMessage();
-}
-
-
 
 
 ?>
@@ -77,7 +53,8 @@ try {
 </head>
 <body>
 <div class="child">
-<h2>Requested Blood <h2>
+<h2>My Donation <h2>
+<?php if (!empty($bloodRequests)) : ?> 
 <table class="content-table">
         <thead>
             <tr>
@@ -110,9 +87,11 @@ try {
             <?php endforeach; ?>
         </tbody>
     </table>
+    <?php endif; ?>
         </div>
-       
+       <div id="content"></div>
 </body>
+
 </html>
 
 <?php

@@ -5,10 +5,10 @@
           box-sizing: border-box;
       }
       
-      /* .content {
+      .content {
           margin: 40px 40px;
           padding-left: 40px;
-      } */
+      }
       
       .content-table{
           border-collapse:collapse;
@@ -82,6 +82,18 @@
         border-radius: 4px;
         margin-right: 5px;
     }
+    #searchAddress {
+        padding: 8px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        margin-right: 5px;
+    }
+    #searchBlood {
+        padding: 8px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        margin-right: 5px;
+    }
     
     #searchButton {
         padding: 8px 15px;
@@ -95,4 +107,20 @@
     #searchButton:hover {
         background-color: #cf3d3c;
     }
-    
+    form input,form select {
+        width: 50%; /* Set the input width to 100% to occupy the container */
+        max-width: 400px; /* Limit the input width to a maximum value */
+        border-radius: 20px;
+        padding: 10px 20px;
+        margin-bottom: 20px;
+        /* Use a light gray border color */
+      }
+
+      form select {
+        width: 100%; /* Set the input width to 100% to occupy the container */
+        max-width: 400px; /* Limit the input width to a maximum value */
+        border-radius: 20px;
+        padding: 10px 20px;
+        margin-bottom: 20px;
+         /* Use a light gray border color */
+      }

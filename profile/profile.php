@@ -115,7 +115,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <input type="text" id="contact" name="contact" value="<?php echo $contact; ?>">
     <br>
     <label for="bloodgroup">Blood Group:</label>
-    <input type="text" id="bloodgroup" name="bloodgroup" value="<?php echo $bloodgroup; ?>">
+<select id="bloodgroup" name="bloodgroup">
+    <option value="<?php echo $bloodgroup; ?>"><?php echo $bloodgroup; ?></option>
+    <option value="A+">A+</option>
+    <option value="A-">A-</option>
+    <option value="B+">B+</option>
+    <option value="B-">B-</option>
+    <option value="AB+">AB+</option>
+    <option value="AB-">AB-</option>
+    <option value="O+">O+</option>
+    <option value="O-">O-</option>
+    <!-- Add more blood types as needed -->
+</select>
     <br>
     <!-- Add more fields as necessary for the profile editing form -->
     <input type="submit" name="submit1" value="Update">
