@@ -56,4 +56,19 @@
           border: none;
           color: white;
           border-radius: 6px;
-      }  
+      }   #searchBlood {
+        padding: 8px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        margin-right: 5px;
+    }
+    
+    #searchButton {
+        padding: 8px 15px;
+        background-color: #cf3d3c;
+        color: white;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+    }
+    

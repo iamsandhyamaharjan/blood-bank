@@ -11,16 +11,23 @@ function displayBloodRequests($bloodGroupFilter = '')
     global $db;
 
     try {
-        $query = "SELECT * FROM request";
+        $query = "SELECT * FROM request WHERE ";
+        $conditions = [];
 
-        // If a blood group filter is specified, add a WHERE clause
         if (!empty($bloodGroupFilter)) {
-            $query .= " WHERE BloodGroup = :bloodGroup";
+            $conditions[] = "BloodGroup = :bloodGroup";
+        }
+
+        if (empty($conditions)) {
+            // No filters applied, display all blood requests
+            $query .= "1"; // Dummy condition to retrieve all records
+        } else {
+            // Apply filters
+            $query .= implode(" AND ", $conditions);
         }
 
         $stmt = $db->prepare($query);
 
-        // Bind the bloodGroup parameter if it's provided
         if (!empty($bloodGroupFilter)) {
             $stmt->bindValue(':bloodGroup', $bloodGroupFilter, PDO::PARAM_STR);
         }
@@ -58,31 +65,41 @@ function displayBloodRequests($bloodGroupFilter = '')
             echo '</table>';
         } else {
             // No matching blood requests found
-            echo 'No blood requests available.';
+            echo 'No blood requests available';
         }
     } catch (PDOException $e) {
         echo "Error: " . $e->getMessage();
     }
-}
-
-// Handle AJAX search request
-if (isset($_POST['bloodType'])) {
-    $bloodType = $_POST['bloodType'];
-    displayBloodRequests($bloodType);
-    exit;
 }
 ?>
 
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Blood Requests</title>
+    <title>Blood Requests List</title>
     <link rel="stylesheet" type="text/css" href="../header/header.css">
-    <link rel="stylesheet" type="text/css" href="content.css">
-    <script src="../header/header.js"></script>
     <link rel="stylesheet" type="text/css" href="../footer copy/footer.css">
-    <link rel="stylesheet" type="text/css" href="blood-request-list.css">
     <link rel="stylesheet" type="text/css" href="../blood-request/blood-request.css">
+    <link rel="stylesheet" type="text/css" href="profile.css">
+</head>
+<body>
+    <!-- Move script includes here -->
+    <!-- ... -->
+
+    <!-- Display blood requests -->
+    <h2>Blood Requests List</h2>
+   
+    <div class="search-container">
+        <input type="text" id="searchBlood" placeholder="Search by blood type...">
+        <button id="searchButton">Search</button>
+    </div>
+
+    <div id="content">
+        <?php displayBloodRequests(); ?>
+    </div>
+
+    <!-- Move script includes here -->
+    <script src="../header/header.js"></script>
     <script src="../footer/footer.js"></script>
     <script src="blood-request-list.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -98,7 +115,7 @@ if (isset($_POST['bloodType'])) {
             // Make an AJAX request to fetch blood requests based on the blood type
             $.ajax({
                 type: "POST",
-                url: "search-blood-requests.php", // Use the same file for handling AJAX request
+                url: "search-blood-requests.php", // Create a separate PHP file for handling the AJAX request
                 data: {
                     bloodType: bloodTypeValue
                 },
@@ -117,27 +134,6 @@ if (isset($_POST['bloodType'])) {
             document.getElementById("searchButton").addEventListener("click", handleSearchButtonClick);
         });
     </script>
-</head>
-<body>
-
-<!-- Add your header content here -->
-
-<h2>Blood Requests</h2>
-
-<!-- Search functionality -->
-<div class="search-container">
-    <!-- Keep only the "Search by blood type" input field -->
-    <input type="text" id="searchBlood" placeholder="Search by blood type...">
-    <button id="searchButton">Search</button>
-</div>
-
-<!-- Display blood requests using the displayBloodRequests function -->
-<div id="content">
-    <?php displayBloodRequests(); ?>
-</div>
-
-<!-- Include your footer content here -->
-
 </body>
 </html>
 

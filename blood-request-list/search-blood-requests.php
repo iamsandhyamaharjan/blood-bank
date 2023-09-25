@@ -51,9 +51,9 @@ function searchBloodRequests($bloodGroupFilter)
     }
 }
 
-// Check if the bloodGroup parameter is set in the GET request
-if (isset($_GET['bloodGroup'])) {
-    $bloodGroupFilter = $_GET['bloodGroup'];
+// Check if the bloodGroup parameter is set in the POST request
+if (isset($_POST['bloodType'])) {
+    $bloodGroupFilter = $_POST['bloodType'];
     searchBloodRequests($bloodGroupFilter);
 } else {
     echo "Invalid request.";

@@ -8,8 +8,9 @@ include '../header/header.php';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Get the form values
+    var_dump($_POST);
     $name = $_POST['name'];
-    $bloodType = $_POST['bloodType'];
+    $bloodType = $_POST['bloodgroup'];
     $contact = $_POST['contact'];
 
     // Assuming you have a database connection named $db
@@ -79,14 +80,14 @@ try {
     <div class="parent">
        
        
-    <form method="POST" action="receipient-request.php">
+    <form method="POST" action="">
     <h2 id="hi">Blood Request Form</h2>
         <!-- Your form fields here -->
         <label for="name">Name:</label>
         <input type="text" id="name" name="name" required><br><br>
 
         <label for="bloodgroup">Blood Group:</label><br>
-<select id="bloodgroups" name="bloodgroup">
+<select id="bloodgroup" name="bloodgroup">
     <option value=""></option>
     <option value="A+">A+</option>
     <option value="A-">A-</option>
