@@ -65,7 +65,7 @@ function displayBloodRequests($bloodGroupFilter = '')
             echo '</table>';
         } else {
             // No matching blood requests found
-            echo 'No blood requests available';
+            echo '<h1>No blood requests available</h1>';
         }
     } catch (PDOException $e) {
         echo "Error: " . $e->getMessage();

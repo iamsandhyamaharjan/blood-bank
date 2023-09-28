@@ -67,7 +67,7 @@ function displayDonors($addressFilter = '', $bloodGroupFilter = '')
             echo '</table>';
         } else {
             // No matching donors found
-            echo 'No Blood available to show';
+            echo '<h1>No Blood available to show</h1>';
         }
     } catch (PDOException $e) {
         echo "Error: " . $e->getMessage();

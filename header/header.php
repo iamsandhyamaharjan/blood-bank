@@ -152,7 +152,7 @@ $isRecipientLoggedIn = isset($_SESSION['recipient']);
         $errormsg2="";
         ?>
             <?php if ($isRecipientLoggedIn): ?>
-                <a href="#"> Home</a>
+                <a href="../recipient/recipient.php"> Home</a>
                 <a href="../profile/profile.php">Profile</a>
                 <a href="../blood-request/blood-request.php">Requests Blood</a>
                 <a href="../blood-request/receipient-request.php">My Requests</a>

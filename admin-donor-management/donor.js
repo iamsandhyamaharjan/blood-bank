@@ -52,5 +52,3 @@ function closeEditForm() {
     // Hide the edit form
     document.getElementById('editFormContainer').style.display = 'none';
 }
-
-

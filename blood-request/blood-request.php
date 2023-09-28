@@ -8,7 +8,7 @@ include '../header/header.php';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Get the form values
-    var_dump($_POST);
+    // var_dump($_POST);
     $name = $_POST['name'];
     $bloodType = $_POST['bloodgroup'];
     $contact = $_POST['contact'];
@@ -17,7 +17,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Replace 'your_username_column' with the actual column name in your recipients table that stores the usernames
     if (isset($_SESSION['recipient'])) {
         $username = $_SESSION['recipient'];}
-        echo $username;
+        // echo $username;
 
     try {
         // Get the RecipientID from the database based on the username
@@ -28,6 +28,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         // Fetch the RecipientID
         $recipientIdResult = $recipientIdQuery->fetch();
         $recipientId = $recipientIdResult['id'];
+        // echo $recipientId;
 
         // Prepare and bind the SQL statement with placeholders
         $q = $db->prepare("INSERT INTO request (r_id, Name, BloodGroup, Contact) VALUES (:recipientId, :name, :bloodType, :contact)");
@@ -38,6 +39,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $q->execute();
 
         echo "Blood request saved successfully.";
+     
     } catch (PDOException $e) {
         echo "Error: " . $e->getMessage();
     }
