@@ -11,16 +11,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $age = $_POST['age'];
     $contact = $_POST['contact'];
     $bloodGroup = $_POST['blood_group'];
+    $password = $_POST['password'];
 
     try {
         if ($recipientId) {
             // Update the existing recipient data in the database
-            $q = $db->prepare("UPDATE recipient SET Name=:name, Address=:address, Age=:age, Contact=:contact, BloodGroup=:bloodGroup WHERE id=:id");
+            $q = $db->prepare("UPDATE recipient SET Name=:name, Address=:address, Age=:age, Contact=:contact, BloodGroup=:bloodGroup, Password=:password WHERE id=:id");
             $q->bindParam(':name', $name);
             $q->bindParam(':address', $address);
             $q->bindParam(':age', $age);
             $q->bindParam(':contact', $contact);
             $q->bindParam(':bloodGroup', $bloodGroup);
+            $q->bindParam(':password', $password);
             $q->bindParam(':id', $recipientId);
             $q->execute();
 
@@ -28,12 +30,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             exit(); // Make sure to exit after redirecting
         } else {
             // Create a new recipient in the database
-            $q = $db->prepare("INSERT INTO recipient (Name, Address, Age, Contact, BloodGroup) VALUES (:name, :address, :age, :contact, :bloodGroup)");
+            $q = $db->prepare("INSERT INTO recipient (Name, Address, Age, Contact, BloodGroup,Password) VALUES (:name, :address, :age, :contact, :bloodGroup :password)");
             $q->bindParam(':name', $name);
             $q->bindParam(':address', $address);
             $q->bindParam(':age', $age);
             $q->bindParam(':contact', $contact);
             $q->bindParam(':bloodGroup', $bloodGroup);
+            $q->bindParam(':password', $password);
             $q->execute();
 
             echo "<script>window.location.href = '../admin-recipient-management/recipient.php';</script>";

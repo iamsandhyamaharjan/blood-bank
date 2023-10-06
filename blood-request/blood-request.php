@@ -38,7 +38,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $q->bindParam(':contact', $contact);
         $q->execute();
 
-        echo "Blood request saved successfully.";
+        echo "<h3>Blood request saved successfully.</h3>";
      
     } catch (PDOException $e) {
         echo "Error: " . $e->getMessage();
@@ -76,21 +76,22 @@ try {
 <link rel="stylesheet" type="text/css" href="profile.css">
 <script src="../footer/footer.js"></script>
 <script src="blood-donate-list.js"></script>
+<script src="blood-request.js"></script>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 <body>
     <div class="parent">
        
        
-    <form method="POST" action="">
-    <h2 id="hi">Blood Request Form</h2>
-        <!-- Your form fields here -->
-        <label for="name">Name:</label>
-        <input type="text" id="name" name="name" required><br><br>
+    <form method="POST" action="" onsubmit="return validateForm()">
+   <h2>Blood Request form</h2>
+    <label for="name">Name:</label>
+    <input type="text" id="editName" name="name" >
+    <div id="error-msg-name" style="color: red;"></div><br><br>
 
-        <label for="bloodgroup">Blood Group:</label><br>
-<select id="bloodgroup" name="bloodgroup">
-    <option value=""></option>
+    <label for="bloodgroup">Blood Group:</label><br>
+    <select id="editBloodgroups" name="bloodgroup" >
+    <option value =""></option>
     <option value="A+">A+</option>
     <option value="A-">A-</option>
     <option value="B+">B+</option>
@@ -99,11 +100,16 @@ try {
     <option value="AB-">AB-</option>
     <option value="O+">O+</option>
     <option value="O-">O-</option>
-</select>
-        <br><br>
+    </select>
+    <div id="error-msg-bloodgroup" style="color: red;"></div><br><br>
 
-        <label for="contact">Contact:</label>
-        <input type="text" id="contact" name="contact" required><br><br>
+    <label for="contact">Contact:</label>
+    <input type="text" id="editContact" name="contact" >
+    <div id="error-msg-contact" style="color: red;"></div><br><br>
+
+  
+
+      
 
         <button type="submit" value="Submit">Submit</button>
     </form>

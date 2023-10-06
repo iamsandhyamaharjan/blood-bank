@@ -72,7 +72,7 @@ form {
     align-items: left;
   }
   
-  form input {
+  form input,form select {
     width: 100%; /* Set the input width to 100% to occupy the container */
     max-width: 400px; /* Limit the input width to a maximum value */
     border-radius: 20px;

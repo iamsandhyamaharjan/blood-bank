@@ -6,6 +6,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
         <link rel="stylesheet" type="text/css" href="../admin/admin-home.css">
+        <link rel="stylesheet" type="text/css" href="../admin/admin-header.css">
         <script src="../admin/admin-home.js"></script>
         <script src="donor.js"></script>
 
@@ -98,20 +99,39 @@ if (isset($_POST['delete_donor'])) {
 <button onclick="createDonor()">Donors Lists</button>
 </div>
     <?php displayDonors(); ?>
-    <div id="editFormContainer">
+    <div id="editFormContainer" >
         <h2>Edit and Create Donor</h2>
-        <form id="editForm" action="update_donor.php" method="POST">
+        <form id="editForm" action="update_donor.php" method="POST" onsubmit="return validateForm()">
             <input type="hidden" name="donor_id" id="editDonorId">
             <label for="editName">Name:</label>
-            <input type="text" name="name" id="editName" required><br/>
+            <input type="text" name="name" id="editName" >
+            <div id="error-msg-5" style="color: red;"><br></div>
             <label for="editAddress">Address:</label>
-            <input type="text" name="address" id="editAddress" required><br/>
+            <input type="text" name="address" id="editAddress">
+            <div id="error-msg-6" style="color: red;"><br></div>
             <label for="editAge">Age:</label>
-            <input type="number" name="age" id="editAge" required><br/>
+            <input type="number" name="age" id="editAge">
+            <div id="error-msg-7" style="color: red;"><br></div>
             <label for="editContact">Contact:</label>
-            <input type="text" name="contact" id="editContact" required><br/>
+            <input type="text" name="contact" id="editContact">
+            <div id="error-msg-8" style="color: red;"><br></div>
+            <label for="editPassword">Password:</label>
+            <input type="text" name="password" id="editPassword">
+            <div id="error-msg-10" style="color: red;"><br></div>
             <label for="editBloodGroup">Blood Group:</label>
-            <input type="text" name="blood_group" id="editBloodGroup" required><br/>
+            <!-- <input type="text" name="blood_group" id="editBloodGroup"><br/> -->
+            <select id="editBloodGroup" name="blood_group">
+                <option value =""></option>
+    <option value="A+">A+</option>
+    <option value="A-">A-</option>
+    <option value="B+">B+</option>
+    <option value="B-">B-</option>
+    <option value="AB+">AB+</option>
+    <option value="AB-">AB-</option>
+    <option value="O+">O+</option>
+    <option value="O-">O-</option>
+</select>
+<div id="error-msg-9" style="color: red;"><br><br></div><br>
             <button type="submit">Save</button>
             <button type="button" onclick="closeEditForm()">Cancel</button>
         </form>
@@ -131,7 +151,9 @@ function openEditForm(id) {
                 document.getElementById('editAddress').value = donor.Address;
                 document.getElementById('editAge').value = donor.Age;
                 document.getElementById('editContact').value = donor.Contact;
+                document.getElementById('editPassword').value = donor.Password;
                 document.getElementById('editBloodGroup').value = donor.BloodGroup;
+               
     
                 // Show the edit form
                 document.getElementById('editFormContainer').style.display = 'block';

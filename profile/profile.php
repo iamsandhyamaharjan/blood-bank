@@ -6,7 +6,8 @@
 </head>
 <link rel="stylesheet" type="text/css" href="../header/header.css">
 <link rel="stylesheet" type="text/css" href="content.css">
-<script src="../header/header.js"></script>
+<!-- <script src="../header/header.js"></script> -->
+<script src="profile.js"></script>
 <link rel="stylesheet" type="text/css" href="../footer/footer.css">
 <link rel="stylesheet" type="text/css" href="profile.css">
 <script src="../footer/footer.js"></script>
@@ -101,36 +102,47 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 <!-- <h2>Welcome, <?php echo $username; ?></h2> -->
 <h2>Profile Information</h2>
-<form action="profile.php" method="post">
+<form action="profile.php" method="post" onsubmit="return validateForm()">
     <label for="name">Name:</label>
-    <input type="text" id="name" name="name" value="<?php echo $name; ?>">
+    <input type="text" id="editName" name="name" value="<?php echo $name; ?>">
+    <br>
+    <div id="hi" style="color: red;"></div> <!-- Error message for Name -->
     <br>
     <label for="address">Address:</label>
-    <input type="text" id="address" name="address" value="<?php echo $address; ?>">
+    <input type="text" id="editAddress" name="address" value="<?php echo $address; ?>">
+    <br>
+    <div id="hi2" style="color: red;"></div> <!-- Error message for Address -->
     <br>
     <label for="age">Age:</label>
-    <input type="number" id="age" name="age" value="<?php echo $age; ?>">
+    <input type="number" id="editAge" name="age" value="<?php echo $age; ?>">
+    <br>
+    <div id="hi3" style="color: red;"></div> <!-- Error message for Age -->
     <br>
     <label for="contact">Contact:</label>
-    <input type="text" id="contact" name="contact" value="<?php echo $contact; ?>">
+    <input type="text" id="editContact" name="contact" value="<?php echo $contact; ?>">
+    <br>
+    <div id="hi4" style="color: red;"></div> <!-- Error message for Contact -->
     <br>
     <label for="bloodgroup">Blood Group:</label>
-<select id="bloodgroup" name="bloodgroup">
-    <option value="<?php echo $bloodgroup; ?>"><?php echo $bloodgroup; ?></option>
-    <option value="A+">A+</option>
-    <option value="A-">A-</option>
-    <option value="B+">B+</option>
-    <option value="B-">B-</option>
-    <option value="AB+">AB+</option>
-    <option value="AB-">AB-</option>
-    <option value="O+">O+</option>
-    <option value="O-">O-</option>
-    <!-- Add more blood types as needed -->
-</select>
+    <select id="editBlood" name="bloodgroup">
+        <option value="<?php echo $bloodgroup; ?>"><?php echo $bloodgroup; ?></option>
+        <option value="A+">A+</option>
+        <option value="A-">A-</option>
+        <option value="B+">B+</option>
+        <option value="B-">B-</option>
+        <option value="AB+">AB+</option>
+        <option value="AB-">AB-</option>
+        <option value="O+">O+</option>
+        <option value="O-">O-</option>
+        <!-- Add more blood types as needed -->
+    </select>
+    <br>
+    <div id="hi5" style="color: red;"></div> <!-- Error message for Blood Group -->
     <br>
     <!-- Add more fields as necessary for the profile editing form -->
     <input type="submit" name="submit1" value="Update">
 </form>
+
 
     <?php
         include '../footer/footer.php';

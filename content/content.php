@@ -18,7 +18,7 @@
   include '../header/header.php';
   ?>
 <div style="position: relative;">
-    <img style="" src="https://assets.rumsan.com/esatya/hlb-banner.jpg" alt="Full Width Image">
+    <img style="" src="https://e1.pxfuel.com/desktop-wallpaper/438/512/desktop-wallpaper-donation-blood-donor.jpg" alt="Full Width Image">
     <!-- <h1>Unleash the Hero Within: </br>
         Donate Blood, Inspire Hope, </br>and Be the Lifesaver Someone Desperately Needs. </br>
         Donate Blood, Save Lives!</h1> -->

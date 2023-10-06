@@ -139,13 +139,14 @@ $isRecipientLoggedIn = isset($_SESSION['recipient']);
     <link rel="stylesheet" type="text/css" href="../content/content.css">
     <link rel="stylesheet" type="text/css" href="../footer/footer.css">
     <link rel="stylesheet" type="text/css" href="blood-donate-list.css">
+    
 </head>
 
 <body>
 
     <header>
         <div class="logo">
-            <img src="https://assets.rumsan.com/esatya/hlb-navbar-logo.png" alt="Logo">
+            <img src="https://img.freepik.com/free-vector/realistic-world-blood-donor-day-illustration_23-2148948280.jpg?size=626&ext=jpg" alt="Logo">
         </div>
         <nav><?php
         $errormsg1="";
@@ -214,7 +215,7 @@ $isRecipientLoggedIn = isset($_SESSION['recipient']);
         <div class="smodal-content">
             <span class="close" onclick="closeModal()">&times;</span>
 
-        <form action="#" method="post" class="register" 
+<form action="#" method="post" class="register" 
         onsubmit="return validateSignUpForm()"
         >
         <h2>SignUp Form </h2>
@@ -253,7 +254,7 @@ $isRecipientLoggedIn = isset($_SESSION['recipient']);
                 </select>
                 <br>
                 <input type="submit" name="signup" value="SignUp">
-            </form>
+ </form>
         </div>
     </div>
 

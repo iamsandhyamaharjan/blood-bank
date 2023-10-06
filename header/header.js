@@ -101,6 +101,7 @@ function validateLoginForm() {
 
 function validateSignUpForm() {
   var username = document.getElementById('names').value.trim();
+ 
   var address = document.getElementById('addresss').value.trim();
   var age = document.getElementById('ages').value.trim();
   var contact = document.getElementById('contacts').value.trim();
@@ -116,6 +117,9 @@ function validateSignUpForm() {
   if (!username) {
     errormsg5 = "Please enter name";
   }
+  else if (!/^[a-zA-Z]+$/.test(username)) {
+    errormsg5 = "Name should contain only alphabet characters";
+} 
   if (!address) {
     errormsg6 = "Please enter address";
   }

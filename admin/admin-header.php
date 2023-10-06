@@ -9,7 +9,7 @@
 <body>
     <header>
         <div class="logo">
-            <img src="https://assets.rumsan.com/esatya/hlb-navbar-logo.png" alt="">
+            <img src="https://img.freepik.com/free-vector/realistic-world-blood-donor-day-illustration_23-2148948280.jpg?size=626&ext=jpg" alt="">
         </div>
         <div class="title">
             <h1>Blood Bank Management System</h1>

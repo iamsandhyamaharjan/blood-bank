@@ -11,16 +11,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $age = $_POST['age'];
     $contact = $_POST['contact'];
     $bloodGroup = $_POST['blood_group'];
+    $password =$_POST['password'];
 
     try {
         if ($donorId) {
             // Update the existing donor data in the database
-            $q = $db->prepare("UPDATE donors SET Name=:name, Address=:address, Age=:age, Contact=:contact, BloodGroup=:bloodGroup WHERE id=:id");
+            $q = $db->prepare("UPDATE donors SET Name=:name, Address=:address, Age=:age, Contact=:contact, BloodGroup=:bloodGroup,Password=:password WHERE id=:id");
             $q->bindParam(':name', $name);
             $q->bindParam(':address', $address);
             $q->bindParam(':age', $age);
             $q->bindParam(':contact', $contact);
             $q->bindParam(':bloodGroup', $bloodGroup);
+            $q->bindParam(':password', $password);
             $q->bindParam(':id', $donorId);
             $q->execute();
 
@@ -28,11 +30,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             exit(); // Make sure to exit after redirecting
         } else {
             // Create a new donor in the database
-            $q = $db->prepare("INSERT INTO donors (Name, Address, Age, Contact, BloodGroup) VALUES (:name, :address, :age, :contact, :bloodGroup)");
+            $q = $db->prepare("INSERT INTO donors (Name, Address, Age, Contact, BloodGroup,Password) VALUES (:name, :address, :age, :contact, :bloodGroup,:password)");
             $q->bindParam(':name', $name);
             $q->bindParam(':address', $address);
             $q->bindParam(':age', $age);
             $q->bindParam(':contact', $contact);
+            $q->bindParam(':password', $password);
             $q->bindParam(':bloodGroup', $bloodGroup);
             $q->execute();
 

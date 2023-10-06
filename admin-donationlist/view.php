@@ -10,6 +10,7 @@
         
         <!-- link to admin-home css -->
         <link rel="stylesheet" type="text/css" href="../admin/admin-home.css">
+        <link rel="stylesheet" type="text/css" href="../admin/admin-header.css">
 
         <!-- link to footer css -->
         <link rel="stylesheet" type="text/css" href="../footer/footer.css">

@@ -7,10 +7,11 @@
 </head>
 <link rel="stylesheet" type="text/css" href="../header/header.css">
 <link rel="stylesheet" type="text/css" href="content.css">
-<script src="../header/header.js"></script>
+<!-- <script src="../header/header.js"></script> -->
 <link rel="stylesheet" type="text/css" href="../footer copy/footer.css">
 <link rel="stylesheet" type="text/css" href="blood-donate.css">
 <script src="../footer/footer.js"></script>
+<script src="blood-donate.js"></script>
 <body>
 <?php
 // Include file2.php
@@ -23,7 +24,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $contact = $_POST['contact'];
     if (isset($_SESSION['donor'])) {
         $username = $_SESSION['donor'];}
-        echo $username;
+        // echo $username;
 
 
     try {
@@ -44,7 +45,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $q->bindParam(':contact', $contact);
         $q->execute();
 
-        echo "Blood request saved successfully.";
+        echo "<br><br><h3>Blood request saved successfully.</h3>";
     } catch (PDOException $e) {
         echo "Error: " . $e->getMessage();
     }
@@ -58,13 +59,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 </head>
 <body>
     <h2>Blood Donation Form</h2>
-    <form method="POST" action="">
-        <!-- Your form fields here -->
-        <label for="name">Name:</label>
-        <input type="text" id="name" name="name" required><br><br>
+    <form method="POST" action="" onsubmit="return validateForm()">
+    <!-- Your form fields here -->
+    <label for="name">Name:</label>
+    <input type="text" id="editName" name="name" >
+    <div id="error-msg-name" style="color: red;"></div><br><br>
 
-        <label for="bloodgroup">Blood Group:</label><br>
-<select id="bloodgroups" name="bloodgroup">
+    <label for="bloodgroup">Blood Group:</label><br>
+    <select id="editBloodgroups" name="bloodgroup" >
+    <option value =""></option>
     <option value="A+">A+</option>
     <option value="A-">A-</option>
     <option value="B+">B+</option>
@@ -73,13 +76,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <option value="AB-">AB-</option>
     <option value="O+">O+</option>
     <option value="O-">O-</option>
-</select><br><br>
+    </select>
+    <div id="error-msg-bloodgroup" style="color: red;"></div><br><br>
 
-        <label for="contact">Contact:</label>
-        <input type="text" id="contact" name="contact" required><br><br>
+    <label for="contact">Contact:</label>
+    <input type="text" id="editContact" name="contact" >
+    <div id="error-msg-contact" style="color: red;"></div><br><br>
 
-        <input type="submit" value="Submit">
-    </form>
+    <input type="submit" value="Submit">
+</form>
     
 </body>
 </html>
