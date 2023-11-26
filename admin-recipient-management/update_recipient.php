@@ -30,7 +30,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             exit(); // Make sure to exit after redirecting
         } else {
             // Create a new recipient in the database
-            $q = $db->prepare("INSERT INTO recipient (Name, Address, Age, Contact, BloodGroup,Password) VALUES (:name, :address, :age, :contact, :bloodGroup :password)");
+            $q = $db->prepare("INSERT INTO recipient (Name, Address, Age, Contact, BloodGroup,Password) VALUES (:name, :address, :age, :contact, :bloodGroup, :password)");
             $q->bindParam(':name', $name);
             $q->bindParam(':address', $address);
             $q->bindParam(':age', $age);
