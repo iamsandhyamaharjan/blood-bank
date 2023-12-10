@@ -46,14 +46,24 @@ function displayBloodRequests($bloodGroupFilter = '')
                 echo '<tr>';
                 echo '<td>' . $request['Name'] . '</td>';
                 echo '<td>' . $request['BloodGroup'] . '</td>';
-                echo '<td>' . $request['Contact'] . '</td>';
+                if ($request['status']== 'Approved') {
+                    echo '<td>' . $request['Contact'] . '</td>';
+                }
+                else{
+                    echo '<td>Need Approval</td>';
+                }
+                
                 echo '<td>';
                 if (!$request['status']) {
                     echo '<button type="submit" onclick="donate(this, ' . $request['id'] . ')">Donate</button>';
                 } else {
                     if ($request['status'] == 'Approved') {
                         echo '<button type="submit">Approved</button>';
-                    } else {
+                    } 
+                    else if($request['status'] == 'RequestedToDonate'){
+                        echo '<button type="submit">Requested to Donate</button>';
+                    }
+                    else {
                         echo '<button type="submit" onclick="donate()">Donated</button>';
                     }
                 }

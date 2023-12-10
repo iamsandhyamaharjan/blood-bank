@@ -13,7 +13,7 @@ function displayDonors($addressFilter = '', $bloodGroupFilter = '')
     global $db;
 
     try {
-        $query = "SELECT * FROM blood b INNER JOIN donors d ON b.DonorId = d.id WHERE ";
+        $query = "SELECT  b.BloodId AS blood_id, d.*, b.* FROM blood b INNER JOIN donors d ON b.DonorId = d.id WHERE ";
         $conditions = [];
 
         if (!empty($addressFilter)) {
@@ -49,7 +49,7 @@ function displayDonors($addressFilter = '', $bloodGroupFilter = '')
         if (count($donors) > 0) {
             // Display matching donors
             echo '<table class="content-table">';
-            echo '<thead><tr><th>Name</th><th>Address</th><th>Age</th><th>Contact</th><th>Blood Group</th><th>Action</th></tr></thead>';
+            echo '<thead><tr><th>Donor Name</th><th>Address</th><th>Age</th><th>Contact</th><th>Blood Group</th><th>Action</th></tr></thead>';
             echo '<tbody>';
 
             foreach ($donors as $donor) {
@@ -57,9 +57,24 @@ function displayDonors($addressFilter = '', $bloodGroupFilter = '')
                 echo '<td>' . $donor['Name'] . '</td>';
                 echo '<td>' . $donor['Address'] . '</td>';
                 echo '<td>' . $donor['Age'] . '</td>';
-                echo '<td>' . $donor['Contact'] . '</td>';
+                if ($donor['status'] == "" ||$donor['status'] == "Requested" ) {
+                    echo '<td>Need Approval</td>';
+                } else if($donor['status'] == "Approved") {
+                    echo '<td>' . $donor['Contact'] . '</td>';
+                }
+               
                 echo '<td>' . $donor['BloodType'] . '</td>';
-                echo '<td><button>Contact</button></td>';
+            
+              
+                if ($donor['status'] == "Requested") {
+                    echo '<td><button>Requested</button></td>';
+                } else if($donor['status'] == "Approved") {
+                    echo '<td><button>Approved</button></td>';
+                }
+                else{
+                    echo '<td><button type="submit" onclick="request(this, ' . $donor['blood_id'] . ')">Request</button></td>';
+                }
+               
                 echo '</tr>';
             }
 
@@ -106,6 +121,7 @@ function displayDonors($addressFilter = '', $bloodGroupFilter = '')
     <script src="../footer/footer.js"></script>
     <!-- <script src="blood-donate-list.js"></script> -->
     <script src="blood-request.js"></script>
+    <script src="available-blood.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
         // Function to be executed when the "Search" button is clicked

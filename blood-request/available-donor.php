@@ -55,9 +55,13 @@ function displayDonors($addressFilter = '', $bloodGroupFilter = '')
                 echo '<td>' . $donor['Name'] . '</td>';
                 echo '<td>' . $donor['Address'] . '</td>';
                 echo '<td>' . $donor['Age'] . '</td>';
+             
+                   
                 echo '<td>' . $donor['Contact'] . '</td>';
+
                 echo '<td>' . $donor['BloodGroup'] . '</td>';
-                echo '<td><button>Contact</button></td>';
+                
+                echo '<td><button>Request</button></td>';
                 echo '</tr>';
             }
 

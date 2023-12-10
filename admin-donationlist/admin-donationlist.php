@@ -77,7 +77,7 @@
                         <tr>
                             <td><?php echo $donation['Name']; ?></td>
                             <td><?php echo $donation['BloodGroup']; ?></td>
-                            <td><?php echo $donation['Contact']; ?></td>
+                            <td><?php echo $donation['contact']; ?></td>
                             <td>
                                 <form method="POST" action="donate.php">
                                 <a href="view.php?id=<?php echo $donation['id']; ?>">

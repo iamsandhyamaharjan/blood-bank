@@ -157,7 +157,7 @@ $isRecipientLoggedIn = isset($_SESSION['recipient']);
                 <a href="../profile/profile.php">Profile</a>
                 <a href="../blood-request/blood-request.php">Requests Blood</a>
                 <a href="../blood-request/receipient-request.php">My Requests</a>
-                <a href="../blood-request/available-donor.php">Available Donors</a>
+                <!-- <a href="../blood-request/available-donor.php">Available Donors</a> -->
                 <a href="../blood-request/available-blood.php">Available Bloods</a>
                 <!-- <a href="../blood-donate-list/blood-donate-list.php">Blood Donation</a>
                 -->
@@ -270,7 +270,7 @@ $isRecipientLoggedIn = isset($_SESSION['recipient']);
                 <div id="error-msg-3" style="color: red;"></div>
                 <br><br>
                 <label for="Password"></label>
-                <input  id="Password1" name="Password" placeholder="Password">
+                <input type="password" id="Password1" name="Password" placeholder="Password">
                 <div id="error-msg-4" style="color: red;"></div>
                 <div class="role">
                     <label for="role">Role:</label>&nbsp;&nbsp;

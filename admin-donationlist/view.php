@@ -37,8 +37,11 @@
             <a href="../admin-recipient-management/recipient.php"><i class="fas fa-users"></i>Recipient Management</a>
             <a href="../admin-donationlist/admin-donationlist.php"><i class="fas fa-list-alt"></i>Donation Lists</a>
             <a href="../admin-requestlist/admin-requestlist.php"><i class="fas fa-list-alt"></i>Request List</a>
-            <a href="#"><i class="fas fa-chart-bar"></i>Reports</a>
-            <a href="#"><i class="fas fa-cog"></i>Settings</a>
+            <a href="../admin-bloodlist/admin-bloodlist.php"><i class="fas fa-list-alt"></i>Blood List</a>
+            <a href="../admin/admin-profile.php"><i class="fas fa-cog"></i>Profile</a>
+
+            <!-- <a href="#"><i class="fas fa-chart-bar"></i>Reports</a> -->
+            <!-- <a href="#"><i class="fas fa-cog"></i>Settings</a> -->
         </aside>
 
         <div class="content">
@@ -73,7 +76,7 @@ if (isset($_GET['id'])) {
             echo '<tr>';
             echo "<td> " . $donation['Name'] . "</td>";
             echo "<td> " . $donation['BloodGroup'] . "</td>";
-            echo "<td> " . $donation['Contact'] . "</td>";
+            echo "<td> " . $donation['contact'] . "</td>";
             // ... other details you want to display
             if ($donation['status'] == 'Donated') {
                     echo "<td> Requested";

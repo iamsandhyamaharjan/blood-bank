@@ -37,9 +37,10 @@
             <a href="../admin-recipient-management/recipient.php"><i class="fas fa-users"></i>Recipient Management</a>
           <a href="../admin-donationlist/admin-donationlist.php"><i class="fas fa-list-alt"></i>Donation Lists</a>
             <a href="../admin-requestlist/admin-requestlist.php"><i class="fas fa-list-alt"></i>Request List</a>
+            <a href="../admin-bloodlist/admin-bloodlist.php"><i class="fas fa-list-alt"></i>Blood List</a>
+           
             <a href="../admin/admin-profile.php"><i class="fas fa-cog"></i>Profile</a>
         </aside>
-
         <div class="content">
 
         <?php
@@ -74,7 +75,7 @@ if (isset($_GET['id'])) {
             echo "<td> " . $request['BloodGroup'] . "</td>";
             echo "<td> " . $request['Contact'] . "</td>";
             // ... other details you want to display
-            if ($request['status'] == 'Donated') {
+            if ($request['status'] == 'RequestedToDonate') {
                     echo "<td> Requested";
                     echo "<button type='button' onclick='approveDonation($requestId)'>Approve</button></td>";
                 } 
@@ -117,7 +118,9 @@ if (isset($_GET['id'])) {
                     requestId: requestId
             },
             success: function(response) {
-                if (response === 'success') {
+                console.log(response);
+                var trimmedResponse = response.trim(); 
+                if (trimmedResponse === 'success') {
                     // Once the status is updated, reload the page to show the updated status
                     window.location.reload();
                 } else {

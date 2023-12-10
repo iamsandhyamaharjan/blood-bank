@@ -5,7 +5,22 @@ include '../header/header.php';
 
 // Start the session to access session variables
 
+if (isset($_SESSION['recipient'])) {
+    $username = $_SESSION['recipient'];
+    $query = $db->prepare("SELECT * FROM recipient WHERE Name = :username");
+    $query->bindParam(':username', $username);
+    $query->execute();
+    $profile = $query->fetch(PDO::FETCH_ASSOC);
 
+    // Store the profile details in variables
+    $name = $profile['Name'];
+    $id =$profile['id'];
+    $address = $profile['Address'];
+    $age = $profile['Age'];
+    $contact = $profile['Contact'];
+    $bloodgroup = $profile['BloodGroup'];
+ 
+}
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Get the form values
     // var_dump($_POST);
@@ -86,12 +101,12 @@ try {
     <form method="POST" action="" onsubmit="return validateForm()">
    <h2>Blood Request form</h2>
     <label for="name">Name:</label>
-    <input type="text" id="editName" name="name" >
+    <input type="text" id="editName" name="name"  value="<?php echo $name; ?>">
     <div id="error-msg-name" style="color: red;"></div><br><br>
 
     <label for="bloodgroup">Blood Group:</label><br>
     <select id="editBloodgroups" name="bloodgroup" >
-    <option value =""></option>
+    <option  value="<?php echo $bloodgroup; ?>"><?php echo $bloodgroup; ?></option>
     <option value="A+">A+</option>
     <option value="A-">A-</option>
     <option value="B+">B+</option>
@@ -104,14 +119,14 @@ try {
     <div id="error-msg-bloodgroup" style="color: red;"></div><br><br>
 
     <label for="contact">Contact:</label>
-    <input type="text" id="editContact" name="contact" >
+    <input type="text" id="editContact" name="contact" value="<?php echo $contact; ?>" >
     <div id="error-msg-contact" style="color: red;"></div><br><br>
 
   
 
       
 
-        <button type="submit" value="Submit">Submit</button>
+        <button type="submit" value="Submit">Request Blood</button>
     </form>
       
        

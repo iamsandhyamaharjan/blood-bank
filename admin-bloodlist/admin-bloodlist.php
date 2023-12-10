@@ -55,7 +55,7 @@
                 // Retrieve blood requests from the database
                 try {
                 // Assuming you have a valid PDO database connection ($db)
-                $query = $db->query("SELECT * FROM blood b inner join donors d where b.donorId = d.id");
+                $query = $db->query("SELECT  b.BloodId AS blood_id, d.*, b.* FROM blood b inner join donors d where b.donorId = d.id");
                 $bloodDonations = $query->fetchAll(PDO::FETCH_ASSOC);
                 } catch (PDOException $e) {
                 echo "Error: " . $e->getMessage();
@@ -69,7 +69,7 @@
                         <th> Donor Name</th>
                         <th>Blood Type</th>
                         <th>Contact</th>
-                        <!-- <th>Action</th> -->
+                        <th>Status</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -77,7 +77,22 @@
                         <tr>
                             <td><?php echo $donation['Name']; ?></td>
                             <td><?php echo $donation['BloodType']; ?></td>
+
                             <td><?php echo $donation['Contact']; ?></td>
+                            <?php
+if ($donation['status'] == "") {
+    echo '<td>No requests</td>';
+} 
+else if ($donation['status'] == "Approved") {
+    echo '<td>Approved</td>';
+} 
+else {
+    $BloodId = $donation['blood_id']; 
+
+    echo '<td>Requested <button onclick="approveRequest(' . $BloodId . ')">Approve</button></td>';
+}
+?>
+
                            
                         </tr>
                     <?php endforeach; ?>
@@ -85,7 +100,34 @@
             </table>
         </div>
     </main>
-
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    // This is your JavaScript code to handle the "Approve" button click
+    function approveRequest(donationId) {
+        // AJAX call to update the status in the database
+        $.ajax({
+            url: 'approve.php', // Replace with the actual PHP file that handles the AJAX request
+            method: 'POST',
+            data: {
+                donationId: donationId
+            },
+            success: function(response) {
+                var trimmedResponse = response.trim(); 
+                if (trimmedResponse === 'success') {
+                    // Once the status is updated, reload the page to show the updated status
+                    window.location.reload();
+                } else {
+                    // Handle error if needed
+                    console.error('Status update failed');
+                }
+            },
+            error: function(xhr, status, error) {
+                // Handle error if needed
+                console.error('AJAX error:', error);
+            }
+        });
+    }
+</script>
     <?php
          include '../footer/footer.php';
     ?>

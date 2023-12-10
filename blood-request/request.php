@@ -10,7 +10,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         // Update the status of the donation in the database
         try {
-            $stmt = $db->prepare("UPDATE request SET Status = 'RequestedToDonate' WHERE id = :donationId");
+            $stmt = $db->prepare("UPDATE blood SET status = 'Requested' WHERE BloodId = :donationId");
             $stmt->bindParam(':donationId', $donationId, PDO::PARAM_INT);
             $stmt->execute();
 

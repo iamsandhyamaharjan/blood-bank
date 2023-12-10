@@ -1,3 +1,4 @@
+
 <?php
 // Include your connect.php file here, which contains your PDO database connection
 include('../connect.php');
@@ -6,12 +7,13 @@ include('../connect.php');
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Make sure the donationId is set and numeric
     if (isset($_POST['donationId']) && is_numeric($_POST['donationId'])) {
-        $donationId = (int)$_POST['donationId'];
+        $requestId = $_POST['donationId'];
 
-        // Update the status of the donation in the database
+        // Update the status of the donation in the database to "Approved"
         try {
-            $stmt = $db->prepare("UPDATE request SET Status = 'RequestedToDonate' WHERE id = :donationId");
-            $stmt->bindParam(':donationId', $donationId, PDO::PARAM_INT);
+            // Assuming you have a valid PDO database connection ($db)
+            $stmt = $db->prepare("UPDATE blood SET status = 'Approved' WHERE BloodId = :requestId");
+            $stmt->bindParam(':requestId', $requestId, PDO::PARAM_INT);
             $stmt->execute();
 
             // Respond with 'success' to indicate successful status update
